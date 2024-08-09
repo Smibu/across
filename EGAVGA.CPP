@@ -62,6 +62,7 @@ static int Kellhang = 1;
 
 static double Fordido = 0.5;
 static double baljobbszamol( double eltelt ) {
+	return 0.5;
 	#ifdef TEST
 		if( eltelt < 0 )
 			hiba( "baljobbszamol-ban eltelt < 0!" );
