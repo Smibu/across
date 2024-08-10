@@ -324,7 +324,7 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 				startwave( WAV_TORES, 0.999 );
 			else
 				startwave( WAV_SIKER, 0.999 );
-			hangosdelay( Vegenvaras*1000.0 );
+			//hangosdelay( Vegenvaras*1000.0 );
 			while( vanmegwav() )
 				hang();
 			Mute = 1;
