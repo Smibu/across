@@ -160,15 +160,16 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 			// Ugras elintezese:
 			int ugrik1 = 0, ugrik2 = 0;
 			if( eddig > utolsougras + Ugroturelem && !replay ) {
-				if( ( (mk_getstate( Lenyugras1 ) || mk_getstate( MK_STATE_M )) && Sajatugras) ||
-					( (mk_getstate( Lenyugras2 ) || mk_getstate( MK_STATE_N )) && !Sajatugras) ) {
+				int alo = mk_getstate(MK_COMMA);
+				if( ( (mk_getstate( Lenyugras1 ) || mk_getstate( MK_STATE_M ) || alo) && Sajatugras) ||
+					( (mk_getstate( Lenyugras2 ) || mk_getstate( MK_STATE_N ) || alo) && !Sajatugras)) {
 					ugrik1 = 1;
 					utolsougras = eddig;
 					utolsougras1volt = 1;
 					startwavegyujto( WAV_UGRAS1, 0.99, -1 );
 				}
-				if( ( (mk_getstate( Lenyugras2 ) || mk_getstate( MK_STATE_N )) && Sajatugras) ||
-					( (mk_getstate( Lenyugras1 ) || mk_getstate( MK_STATE_M )) && !Sajatugras) ) {
+				if( ( (mk_getstate( Lenyugras2 ) || mk_getstate( MK_STATE_N ) || alo) && Sajatugras) ||
+					( (mk_getstate( Lenyugras1 ) || mk_getstate( MK_STATE_M ) || alo) && !Sajatugras) ) {
 					ugrik2 = 1;
 					utolsougras = eddig;
 					utolsougras1volt = 0;

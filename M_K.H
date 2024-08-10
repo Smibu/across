@@ -17,6 +17,7 @@ int mk_getstate( int kod );
 #define MK_PGDOWN (34)
 #define MK_BACKSPACE (8)
 #define MK_DEL    (46)
+#define MK_COMMA  (188)
 
 #define MK_STATE_S (83)
 #define MK_STATE_T (84)
