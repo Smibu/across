@@ -3,7 +3,7 @@
 static int Hibaismeretlenkar = 0;
 
  
-abc8::abc8( char* nev ) {
+abc8::abc8( const char* nev ) {
 	success = 0;
 	tav = 0;
 	ppsprite = NULL;
@@ -20,7 +20,7 @@ abc8::abc8( char* nev ) {
 		uzenet( "memory" );
 		return;
 	}
-	for( i = 0; i < 256; i++ )
+	for( int i = 0; i < 256; i++ )
 		ytomb[i] = 0;
 	FILE* h = qopen( nev, "rb" );
 	if( !h ) {
@@ -102,7 +102,7 @@ abc8::~abc8( void ) {
 
 static int Spacehossz = 5;
 
-void abc8::write( pic8* pdest, int x, int y, char* text, int tavpar ) {
+void abc8::write( pic8* pdest, int x, int y, const char* text, int tavpar ) {
 	if( !success ) {
 		hiba( "abc8::write, pedig nem success!" );
 		return;
@@ -134,7 +134,7 @@ void abc8::write( pic8* pdest, int x, int y, char* text, int tavpar ) {
 	}
 }
 
-int abc8::len( char* text, int tavpar ) {
+int abc8::len( const char* text, int tavpar ) {
 	if( !success ) {
 		hiba( "abc8::len, pedig nem success!" );
 		return 0;
@@ -170,7 +170,7 @@ void abc8::settav( int tavpar ) {
 	tav = tavpar;
 }
 
-void abc8::writekozep( pic8* pdest, int x, int y, char* text, int tavpar ) {
+void abc8::writekozep( pic8* pdest, int x, int y, const char* text, int tavpar ) {
 	int hossz = len( text, tav );
 	write( pdest, x-hossz/2, y, text, tavpar );
 }

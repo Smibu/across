@@ -3,11 +3,10 @@
 #include	<io.h>
 #include	<dos.h>
 #include	<conio.h>
-#include	<mem.h>
 #include	<string.h>
-#include	<alloc.h>
 #include	<math.h>
 #include	<time.h>
+#include	<ctype.h>
 
 //#include	<phapi.h>
 
@@ -32,7 +31,7 @@
 
 // EGAVGA-as verziohoz:
 
-//#include	"..\mouse.h"
+#include	"..\mouse.h"
 
 #include	"..\vekt2.h"
 #include	"..\kor.h"
@@ -57,7 +56,6 @@
 
 // Kozos:
 
-#include	"..\graph.h"
 #include	"..\kirajzol.h"
 //#include	"..\hatter.h"
 
@@ -96,7 +94,6 @@
 
 #include	"..\digit.h"
 
-#include	"..\hordo.h"
 #include	"..\options.h"
 
 #include	"..\newuj.h"
@@ -107,4 +104,5 @@
 
 #include	"..\d_nempub.h"
 
-
+#include	"misc.h"
+#include	"skip.h"

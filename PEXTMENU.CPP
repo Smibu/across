@@ -24,7 +24,7 @@ static long playextfile( char* filenev ) {
 	// Kiirjuk osszes lev file nevet ide:
 	find_t ffblk;
 	int done;
-	done = _dos_findfirst( "*.lev", _A_NORMAL, &ffblk );
+	done = findfirstfile( "*.lev", _A_NORMAL, &ffblk );
 	int szam = 0;
 	int kezdo = 0;
 	while( !done ) {
@@ -43,7 +43,7 @@ static long playextfile( char* filenev ) {
 			lassufizre( Korny->picbuffer, Korny->pal_load );
 			mk_emptychar();
 			mk_getextchar();
-			done = _dos_findnext( &ffblk );
+			done = findnextfile( &ffblk );
 			continue;
 		}
 
@@ -56,7 +56,7 @@ static long playextfile( char* filenev ) {
 		if( strcmp( State->playextfilenev, filenev ) == 0 )
 			kezdo = szam;
 
-		done = _dos_findnext( &ffblk );
+		done = findnextfile( &ffblk );
 		szam++;
 		if( szam >= MAXRUBRIKASZAM-4 )
 			done = 1;
@@ -174,7 +174,8 @@ void playextmenu( void ) {
 		// Kiirjuk osszes lev file nevet ide:
 		find_t ffblk;
 		int done;
-		done = _dos_findfirst( "*.lev", _A_NORMAL, &ffblk );
+		intptr_t handle;
+		done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
 		int szam = 0;
 		while( !done ) {
 			char* filenev = ffblk.name;
@@ -192,7 +193,7 @@ void playextmenu( void ) {
 				lassufizre( Korny->picbuffer, Korny->pal_load );
 				mk_emptychar();
 				mk_getextchar();
-				done = _dos_findnext( &ffblk );
+				done = findnextfile( &ffblk );
 				continue;
 			}
 
@@ -202,11 +203,12 @@ void playextmenu( void ) {
 
 			strcpy( Korny->rubrikak[szam], filenev );
 
-			done = _dos_findnext( &ffblk );
+			done = findnextfile( handle, &ffblk );
 			szam++;
 			if( szam >= MAXRUBRIKASZAM-4 )
 				done = 1;
 		}
+		findclose(handle);
 
 		if( szam <= 0 )
 			return;

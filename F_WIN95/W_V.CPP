@@ -2,13 +2,13 @@
 
 int Win_95 = 1;
 
-static LRESULT CALLBACK _export WndProc( HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam );
+static LRESULT CALLBACK WndProc( HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam );
 
 static HINSTANCE ghInstance = 0;
 HWND GhWnd = 0;
 
-static char szAppName[100] = "sz_nev";
-static char szCaption[100] = "sz_cap";
+static char szAppName[100] = "Action SuperCross 1.2";
+static char szCaption[100] = "Action SuperCross 1.2";
 
 static int GameLoop = 0;
 
@@ -50,7 +50,7 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	//						(HWND)NULL, (HMENU)NULL, hInstance, (LPVOID)NULL );
 
 	// DirectDraw-hoz ez volt:
-	GhWnd = CreateWindowEx( WS_EX_TOPMOST, szAppName,
+	GhWnd = CreateWindowEx( 0, szAppName,
    						szCaption, WS_POPUP,
 							0, 0, 320, 200,
 							(HWND)NULL, (HMENU)NULL,
@@ -103,13 +103,13 @@ void mv_check( void ) {
 }
 
 // Ez itt torlendo:
-void szovegki( int y, char* szoveg ) {
+void szovegki( int y, const char* szoveg ) {
 	HDC hdc = GetDC( GhWnd );
 	TextOut( hdc, 30, y, szoveg, strlen( szoveg ) );
 	ReleaseDC( GhWnd, hdc );
 }
 
-static LRESULT CALLBACK _export WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
+static LRESULT CALLBACK WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam ) {
 	switch( msg ) {
 		case WM_CREATE:
 			PostMessage( hWnd, WM_USER+1000, 0, 0 );
@@ -163,7 +163,7 @@ void mv_startstopper( void ) {
 	Startido = timeGetTime()*0.182;
 }
 
-void hiba( char* text1, char* text2, char* text3 ) {
+void hiba( const char* text1, const char* text2, const char* text3 ) {
 	FILE* h = fopen( "error.txt", "wt" );
 	if( h ) {
 		fprintf( h, "%s\n", text1 );
@@ -190,7 +190,7 @@ void hiba( char* text1, char* text2, char* text3 ) {
 	mv_exit();
 }
 
-void uzenet( char* text1, char* text2, char* text3 ) {
+void uzenet( const char* text1, const char* text2, const char* text3 ) {
 	hiba( text1, text2, text3 );
 }
 

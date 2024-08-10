@@ -168,7 +168,7 @@ targytomb::targytomb( char* nev ) {
 		hiba( "targytipusszam > MAXTARGYTIPUSSZAM!" );
 
 	// Most jonnek sorra targytipusok:
-	for( i = 0; i < targytipusszam; i++ ) {
+	for( int i = 0; i < targytipusszam; i++ ) {
 		if( loadtargytipus( &targytipusok[i], h ) != i )
 			hiba( "targytipus sorszama nem stimmel!" );
 	}

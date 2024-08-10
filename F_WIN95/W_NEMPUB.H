@@ -12,7 +12,7 @@ extern HWND GhWnd; // Window handler
 double mv_getsec( void ); // Elvileg le fog allni, ha elkerul vezerles!
 
 
-void szovegki( int y, char* szoveg ); // torlendo:
+void szovegki( int y, const char* szoveg ); // torlendo:
 
 
 

@@ -72,7 +72,7 @@ public:
 	char levelname[LEVELNAMEHOSSZ+1];
 
 	topol( void );
-	topol( char* filenev, int kulso ); // kulso: qopen vagy nem
+	topol( const char* filenev, int kulso ); // kulso: qopen vagy nem
 	~topol( void );
 	gyuru* legkozpont( double x, double y, int* pk, double* ptav = NULL );
 	kerek* legkozkerek( double x, double y, double* ptav = NULL );

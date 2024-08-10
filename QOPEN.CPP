@@ -107,7 +107,8 @@ void becsomagol( void ) {
 
 	find_t ffblk;
 	int done;
-	done = _dos_findfirst( "*.*", _A_NORMAL, &ffblk );
+	intptr_t handle;
+	done = findfirstfile( "*.*", _A_NORMAL, &ffblk, &handle );
 	int kov = 0;
 	while( !done ) {
 		if( kov == FILESZAM )
@@ -135,9 +136,10 @@ void becsomagol( void ) {
 		if( Leirotomb[kov].hossz <= 0 )
 			hiba( "Hossz <= 0!" );
 
-		done = _dos_findnext( &ffblk );
+		done = findnextfile( handle, &ffblk );
 		kov++;
 	}
+	findclose(handle);
 
 	if( fseek( h, 0, SEEK_SET ) != 0 )
 		hiba( "fseek 0-t adott vissza!" );
@@ -159,7 +161,7 @@ static int Indextomb[MAXNYITVA];
 
 static int Nyitva = 0;
 
-FILE* qopen( char* nev, char* paramok ) {
+FILE* qopen( const char* nev, const char* paramok ) {
 	if( !Qopeninited )
 		hiba( "qopen initqopen nelkul!" );
 	if( Nyitva  == MAXNYITVA )

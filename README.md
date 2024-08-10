@@ -1,3 +1,17 @@
+# Action SuperCross Windows port
+
+This is a partial port of Action SuperCross to Windows.
+
+Known limitations:
+
+* Editor does not work
+* Sound does not work
+* Requires a DirectDraw wrapper library (e.g. DXGL)
+
+Upstream repo is https://github.com/elastomania/across. Original readme is below.
+
+---
+
 # Action SuperCross Source Code
 This repository was uploaded in good faith for the purpose of exploring the original source code of this classic game. Non-source-code game assets (sounds, graphics, tools, etc.) are not part of this open source release.
 

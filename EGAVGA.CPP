@@ -196,8 +196,8 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 				leptet(
 					eddig,
 					dt,
-					mk_getstate( Lenygaz ) || mk_getstate( 'a' ),
-					mk_getstate( Lenyfek ) || mk_getstate( 'z' ),
+					mk_getstate( Lenygaz ) || mk_getstate( 'A' ),
+					mk_getstate( Lenyfek ) || mk_getstate( 'Z' ),
 					ugrik1,
 					ugrik2 );
 				if( prec )

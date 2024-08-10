@@ -9,7 +9,7 @@ public:
 
 			wav( unsigned sizepar );
 			// maxamplitudo 0 es 1 kozott valtozik!:
-			wav( char* nev, double maxamplitudo,
+			wav( const char* nev, double maxamplitudo,
 									int start = -1, int ucsoutani = -1 );
 	void    save( char* nev );
 	// Manipulalas:

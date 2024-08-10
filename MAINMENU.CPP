@@ -65,10 +65,11 @@ static void replay( void ) {
 
 	find_t ffblk;
 	int done;
-	if( Win_95 )
-		done = _dos_findfirst( "*.rew", _A_NORMAL, &ffblk );
+	intptr_t handle;
+	if( 0 )
+		done = findfirstfile( "*.rew", _A_NORMAL, &ffblk, &handle );
 	else
-		done = _dos_findfirst( "*.rec", _A_NORMAL, &ffblk );
+		done = findfirstfile( "*.rec", _A_NORMAL, &ffblk, &handle );
 	// Ez mindig eggyel tobb, mint valosag, mivel az elso
 	// rubrika mindig 'Randomizer':
 	int szamuk = 1;
@@ -84,11 +85,12 @@ static void replay( void ) {
 		}
 		nev[i] = 0;
 
-		done = _dos_findnext( &ffblk );
+		done = findnextfile( handle, &ffblk );
 		szamuk++;
 		if( szamuk >= MAXRUBRIKASZAM-4 )
 			done = 1;
 	}
+	findclose(handle);
 
 	if( szamuk < 2 )
 		return;
@@ -199,7 +201,7 @@ static void demo( void ) {
 	int demoszam = 2;
 	if( Sarvari )
 		demoszam = 2;
-	#ifdef W_95
+	#if 0
 		hiba( "Demoban most nem lehet!" );
 		char demonevek[14][14] = { "w4.rew",
 								   "w10.rew",
@@ -338,7 +340,7 @@ void mainmenu( void ) {
 		}
 
 		if( eredmeny == 5 ) {
-			editor();
+			editornotported();
 		}
 
 		if( eredmeny == -1 ) {

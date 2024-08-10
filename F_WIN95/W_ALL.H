@@ -6,7 +6,7 @@
 #include	<stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include	<mem.h>
+#include <io.h>
 
 #define W_95
 
@@ -18,5 +18,7 @@
 #include	"..\m_k.h"
 #include	"..\m_dd.h"
 
-
-
+#include	"teljes.h"
+#include	"config.h"
+#include	"vekt2.h"
+#include	"adatok.h"

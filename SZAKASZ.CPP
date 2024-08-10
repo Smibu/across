@@ -1,6 +1,6 @@
 #include	"all.h"
 
-#ifdef WATCOM
+#if 1
 	static int Szakaszmaxszam = 5130;
 #else
 	static int Szakaszmaxszam = 1040;
@@ -46,7 +46,7 @@ szakaszok::szakaszok( FILE* h, int targyas ) {
 	pelsocsomag = NULL;
 	csomagbanbetelt = 0;
 
-	#ifndef WATCOM
+	#if 0
 		// Fel lehet emelni 64000-re:
 		if( long(Szakaszmaxszam) * sizeof( szakasz ) > 64000l )
 			hiba( "szakaszok::szakaszok-ban long(Szakaszmaxszam) * sizeof( szakasz ) > 64000l!" );
@@ -95,7 +95,7 @@ szakaszok::szakaszok( FILE* h, int targyas ) {
 	if( szam >= Szakaszmaxszam )
 		hiba( "Nincs eleg hely szakaszoknak!" );
 
-	for( i = 0; i < szam; i++ ) {
+	for( int i = 0; i < szam; i++ ) {
 		if( fgets( sor, 190, h ) == NULL ) {
 			hiba( "Nem tudott olvasni txt file-bol!" );
 			return;
@@ -173,7 +173,7 @@ szakaszok::szakaszok( topol* ptop, int targyas ) {
 		memset( &tomb[i], 0, sizeof( szakasz ) );
 
 	if( targyas ) {
-		for( i = 0; i < MAXKEREK; i++ ) {
+		for( int i = 0; i < MAXKEREK; i++ ) {
 			kerek* pker = ptop->kerektomb[i];
 			if( !pker )
 				continue;
@@ -202,7 +202,7 @@ szakaszok::szakaszok( topol* ptop, int targyas ) {
 	}
 	else {
 		// Normal szakaszok beolvasasa:
-		for( i = 0; i < MAXGYURU; i++ ) {
+		for( int i = 0; i < MAXGYURU; i++ ) {
 			gyuru* pgy = ptop->ptomb[i];
 			if( !pgy )
 				continue;
@@ -454,7 +454,7 @@ void szakaszok::rendez( double maxtav ) {
 	if( tertomb )
 		hiba( "szakaszok::rendez-ban nodetomb != NULL!" );
 
-	#ifdef WATCOM
+	#if 1
 		cellameret = 1.0;
 	#else
 		cellameret = 2.0;
@@ -501,7 +501,7 @@ void szakaszok::rendez( double maxtav ) {
 	ydim = ysized/cellameret+1;
 	if( xdim < 0 || ydim < 0 )
 		hiba( "xdim < 0 || ydim < 0!" );
-	#ifndef WATCOM
+	#if 0
 		// DOS es DOSX286:
 		if( xdim > 100 || ydim > 100 )
 			hiba( "xdim > 100 || ydim > 100!" );
@@ -662,7 +662,7 @@ int szakaszok::getsorszam( szakasz* pszakasz ) {
 	return -1;
 }
 
-void loadszakaszok( char* nev, int kulso, szakaszok** ppszak,
+void loadszakaszok( const char* nev, int kulso, szakaszok** ppszak,
 						szakaszok** ppszakt ) {
 	if( *ppszak || *ppszakt )
 		hiba( "loadszakaszok-ban *ppszak || *ppszakt!" );

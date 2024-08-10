@@ -18,13 +18,13 @@ protected:
 	int fizkep;
 	int nemdestrukt;
 	int lefoglal( long xsize, long ysize );
-	void voxbeolvas( char* nev );
-	int voxsave( char* nev );
-	void mixbeolvas( char* nev );
-	void spritebeolvas( char* nev, FILE* h );
-	int spritesave( char* nev, FILE* h );
-	void pcxbeolvas( char* nev );
-	int pcxsave( char* nev, unsigned char* pal );
+	void voxbeolvas( const char* nev );
+	int voxsave( const char* nev );
+	void mixbeolvas( const char* nev );
+	void spritebeolvas( const char* nev, FILE* h );
+	int spritesave( const char* nev, FILE* h );
+	void pcxbeolvas( const char* nev );
+	int pcxsave( const char* nev, unsigned char* pal );
 public: // Csak gany miatt public!
 	short xsize, ysize;
 	puchar* sormuttomb;
@@ -40,10 +40,10 @@ public:
 	// Mar meglevo tombre epiti ra pic8-at, destruktor nem torli:
 	pic8( int xsize, int ysize, unsigned char** ppc );
 	// VOX ,MIX, SPR es PCX-eket ismeri:
-	pic8( char* nev, FILE* h = NULL );
+	pic8( const char* nev, FILE* h = NULL );
 	~pic8( void );
 	// VOX, SPR es PCX-et ismeri:
-	int save( char* nev, unsigned char* pal = NULL, FILE* h = NULL );
+	int save( const char* nev, unsigned char* pal = NULL, FILE* h = NULL );
 	int getxsize( void );
 	int getysize( void );
 	void ppixel( int x, int y, unsigned char szin );
@@ -61,8 +61,8 @@ public:
 class ddpal;
 
 unsigned char* spriteadat8( pic8* pmask, unsigned char szin, unsigned short* pspritehossz );
-int pcxtopal( char* nev, unsigned char* pal );
-int pcxtopal( char* nev, ddpal** ppddpal );
+int pcxtopal( const char* nev, unsigned char* pal );
+int pcxtopal( const char* nev, ddpal** ppddpal );
 
 void mintavetel8( pic8* pdest, pic8* psour, int x1, int y1, int x2, int y2 );
 void mintavetel8( pic8* pdest, pic8* psour );

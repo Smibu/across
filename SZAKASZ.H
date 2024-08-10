@@ -84,7 +84,7 @@ public:
 
 class leiro;
 
-void loadszakaszok( char* nev, int kulso, szakaszok** ppszak,
+void loadszakaszok( const char* nev, int kulso, szakaszok** ppszak,
 			szakaszok** ppszakt );
 void saveszakaszok( char* nev, szakaszok* pszak, szakaszok* pszakt );
 

@@ -87,14 +87,14 @@ void pic8f::fuggvonalcpy( int x, int y, unsigned char* tomb ) {
 	}
 	// Utolso reszlet:
 	hossz = ysize-y;
-	for( i = 0; i < hossz; i++ ) {
+	for( int i = 0; i < hossz; i++ ) {
 		unsigned char* psor = ppic->sormuttomb[i+y+ysize];
 		psor[x] = tomb[i];
 		psor[x2] = tomb[i];
 	}
 	// Elso reszlet:
 	hossz = y;
-	for( i = 0; i < hossz; i++ ) {
+	for( int i = 0; i < hossz; i++ ) {
 		unsigned char* psor = ppic->sormuttomb[i];
 		psor[x] = tomb[ysize-y+i];
 		psor[x2] = tomb[ysize-y+i];

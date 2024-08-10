@@ -4,8 +4,6 @@ LPDIRECTDRAW            Pdd = NULL;           // DirectDraw object
 LPDIRECTDRAWSURFACE     Pddsprimary = NULL;   // DirectDraw primary surface
 LPDIRECTDRAWSURFACE     Pddsback = NULL;      // DirectDraw back surface
 
-static int Ddxsize = -1, Ddysize = -1;
-
 /*void uzenet( char* text1, char* text2, char* text3 ) {
 	hiba( text1, text2, text3 );
 } */
@@ -37,6 +35,7 @@ void setresdd( int res ) {
    	return;
 	if( res != 1 && res != 2 && res != 3 && res != 4 )
    	hiba( "setresdd-ben res != 1 && res != 2 && res != 3 && res != 4!" );
+    int Ddxsize = -1, Ddysize = -1;
 	if( res == 1 ) {
 		Ddxsize = 320;
 	   Ddysize = 200;
@@ -59,16 +58,15 @@ void setresdd( int res ) {
       if( !Pddsprimary )
       	hiba( "setresdd-ben Release elott !Pddsprimary!" );
 		Pddsprimary->Release();
+        Pddsback->Release();
       Pddsprimary = NULL;
+      Pddsback = NULL;
    }
    Elsosetresdd = 0;
 
    // Set the video mode:
    HRESULT ddrval;
 	// torlendo (if):
-   if( res == 3 ) 
-       ddrval = Pdd->SetDisplayMode( 640, 480, 8 );
-	else
    	ddrval = Pdd->SetDisplayMode( Ddxsize, Ddysize, 8 );
     if( ddrval != DD_OK ) {
     		for( int i = 0; i < 1000; i++ ) {
@@ -230,7 +228,7 @@ unsigned char** lockbackbuffer( int* pxs, int* pys ) {
 	Bufflocked = 1;
 
 	DDSURFACEDESC ddsd;
-   setmem( &ddsd, sizeof( ddsd ), 0 );
+   memset( &ddsd, 0, sizeof( ddsd ) );
    ddsd.dwSize = sizeof( ddsd );
    HRESULT ddrval = DDERR_WASSTILLDRAWING;
    int restored = 0;
@@ -273,13 +271,13 @@ unsigned char** lockbackbuffer( int* pxs, int* pys ) {
 	}
 
 	unsigned char* mut = (unsigned char*)ddsd.lpSurface;
-	for( int y = 0; y < Ddysize; y++ ) {
-		Mutbuffer[Ddysize-1-y] = mut;
+	for( int y = 0; y < ddsd.dwHeight; y++ ) {
+		Mutbuffer[ddsd.dwHeight -1-y] = mut;
       mut += ddsd.lPitch;
    }
 
-   *pxs = Ddxsize;
-   *pys = Ddysize;
+   *pxs = ddsd.dwWidth;
+   *pys = ddsd.dwHeight;
 	return Mutbuffer;
 }
 
@@ -323,7 +321,7 @@ ddpal::ddpal( unsigned char* tomb ) {
     }
    HRESULT ddrval = Pdd->CreatePalette( DDPCAPS_8BIT,
 			  										 pe,
-					                         &(LPDIRECTDRAWPALETTE)pddpal,
+					                         (LPDIRECTDRAWPALETTE*)&pddpal,
       		   			                NULL );
 	if( ddrval != DD_OK )
 			hiba( "CreatePalette did not succeed!" );

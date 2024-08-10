@@ -84,12 +84,12 @@ public:
 	void hatterszamitas( double tartxsize, double tartysize );
 };
 
-void pleasewait( char* nev );
+void pleasewait( const char* nev );
 
 extern kornyezet* Korny; // teljes.cpp-ben van inicializalva.
 
 
-void dialog320( char* text0, char* text1 = NULL, char* text2 = NULL,
+void dialog320( const char* text0, const char* text1 = NULL, char* text2 = NULL,
 				char* text3 = NULL, char* text4 = NULL,
 				char* text5 = NULL, char* text6 = NULL );
 

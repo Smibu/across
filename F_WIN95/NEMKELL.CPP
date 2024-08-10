@@ -40,6 +40,9 @@ void ppixel_l( int x, int y, int szin ) {
 }
 
 int gpixel_l( int x, int y ) {
+	return 0;
 }
 
+void putpixel8_l(int x, int y, unsigned char szin) {
 
+}

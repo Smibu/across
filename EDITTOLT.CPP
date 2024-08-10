@@ -116,7 +116,8 @@ void tolt_open( void ) {
 		Soknev[i] = 0;
 	int done;
 	find_t ffblk;
-	done = _dos_findfirst( "*.lev", _A_NORMAL, &ffblk );
+	intptr_t handle;
+	done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
 	int nevszam = 0;
 	while( !done ) {
 		if( strlen( ffblk.name ) > 14 )
@@ -134,7 +135,7 @@ void tolt_open( void ) {
 		if( strlen( nev ) > 8 )
 			hiba( "iuoriureiur" );
 
-		done = _dos_findnext( &ffblk );
+		done = findnextfile( handle, &ffblk );
 		nevszam++;
 		if( nevszam >= Maxnev ) {
 			dialog( "Number of files > 1000 in open dialog box!",
@@ -142,6 +143,7 @@ void tolt_open( void ) {
 			done = 1;
 		}
 	}
+	findclose(handle);
 	if( nevszam < 1 ) {
 		dialog( "There is not any level file (*.lev) in this directory!" );
 		return;
@@ -150,7 +152,7 @@ void tolt_open( void ) {
 	abcberendez( nevszam );
 
 	int kur = 0; // Ha megtalalja eddigit, akkor kur-t raallitja
-	for( i = 0; i < nevszam; i++ ) {
+	for( int i = 0; i < nevszam; i++ ) {
 		char tmp[50];
 		strcpy( tmp, &Soknev[i*10] );
 		strcat( tmp, ".lev" );
@@ -285,7 +287,8 @@ void kivalasztkezdetit( void ) {
 		Soknev[i] = 0;
 	int done;
 	find_t ffblk;
-	done = _dos_findfirst( "*.lev", _A_NORMAL, &ffblk );
+	intptr_t handle;
+	done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
 	int nevszam = 0;
 	while( !done ) {
 		if( strlen( ffblk.name ) > 14 )
@@ -304,7 +307,7 @@ void kivalasztkezdetit( void ) {
 		if( strlen( nev ) > 8 )
 			hiba( "iuoriureiur" );
 
-		done = _dos_findnext( &ffblk );
+		done = findnextfile( handle, &ffblk );
 		nevszam++;
 		if( nevszam >= Maxnev ) {
 			dialog( "Number of files > 1000 in open dialog box!",
@@ -312,6 +315,7 @@ void kivalasztkezdetit( void ) {
 			done = 1;
 		}
 	}
+	findclose(handle);
 	if( nevszam < 1 ) {
 		State->editfilenev[0] = 0;
 		return;
@@ -320,7 +324,7 @@ void kivalasztkezdetit( void ) {
 	abcberendez( nevszam );
 
 	int kur = 0; // Ha megtalalja eddigit, akkor kur-t raallitja
-	for( i = 0; i < nevszam; i++ ) {
+	for( int i = 0; i < nevszam; i++ ) {
 		char tmp[50];
 		strcpy( tmp, &Soknev[i*10] );
 		strcat( tmp, ".lev" );

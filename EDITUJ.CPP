@@ -89,7 +89,7 @@ void pop( void ) {
 
 static char Toolhelpszoveg[110] = "";
 
-void toolhelp( char* text ) {
+void toolhelp( const char* text ) {
 	if( text ) {
 		if( strlen( text ) > 100 )
 			hiba( "toolhelp-ben strlen( text ) > 100!", text );
@@ -273,9 +273,9 @@ void editor( void ) {
 
 	setresdd( 4 ); // 640x480
 
-	Korny->pal_editor->tomb[39*3] = 0;
-	Korny->pal_editor->tomb[39*3+1] = 0;
-	Korny->pal_editor->tomb[39*3+2] = 0;
+	//Korny->pal_editor->tomb[39*3] = 0;
+	//Korny->pal_editor->tomb[39*3+1] = 0;
+	//Korny->pal_editor->tomb[39*3+2] = 0;
 	Korny->pal_editor->set();
 
 	/*if( !Mouseinited ) {

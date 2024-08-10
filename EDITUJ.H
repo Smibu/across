@@ -31,7 +31,7 @@ void invalidateegesz( void );
 
 void editor( void );
 
-void toolhelp( char* text = NULL );
+void toolhelp( const char* text = NULL );
 
 #define SZ_ZOOMVONAL (90)
 

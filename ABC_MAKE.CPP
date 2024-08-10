@@ -188,7 +188,7 @@ void kulonexe_abcmake( void ) {
 	blt8( Pscr8, pnpic );
 
 	// Megnyitja abc-t irasra:
-	char* abcneve = "abc.abc";
+	const char* abcneve = "abc.abc";
 	FILE* h = fopen( abcneve, "wb" );
 	if( !h ) {
 		hiba( "Nem tudta megnyitni abc-t irasra!: ", abcneve );

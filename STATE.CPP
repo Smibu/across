@@ -35,7 +35,7 @@ static void titkoswrite( void* mut, int hossz, FILE* h ) {
 		hiba( "Nem ment iras state file-ba!" );
 	a = 23; b = 9782; c = 3391;
 
-	for( i = 0; i < hossz; i++ ) {
+	for( int i = 0; i < hossz; i++ ) {
 		pc[i] ^= a;
 		a %= c;
 		b += a*c;

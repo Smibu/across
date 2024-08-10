@@ -11,7 +11,7 @@ static double Affinaranyy = 1.0;
 static double Tulvizszintes = 0.005;
 
 void egysor( unsigned char lyuk, short szam, unsigned char* sor,
-		unsigned char* tomb, long futox, long futoy, long dx, long dy );
+		kiskep* tomb, long futox, long futoy, long dx, long dy );
 
 #ifdef WATCOM
 
@@ -61,7 +61,7 @@ void egysor( unsigned char lyuk, short szam, unsigned char* sor,
 #else
 
 void egysor( unsigned char lyuk, short szam, unsigned char* sor,
-		unsigned char* tomb, long futox, long futoy, long dx, long dy ) {
+		kiskep* kiskep, long futox, long futoy, long dx, long dy ) {
 	short* pf_futox = (short*)(&futox);
 	pf_futox++;
 	short* pf_futoy = (short*)(&futoy);
@@ -71,9 +71,11 @@ void egysor( unsigned char lyuk, short szam, unsigned char* sor,
 		unsigned short fy = *pf_futoy;
 		fy = (fy << 8) + fx;
 
-		unsigned char c = tomb[fy];
-		if( c != lyuk )
-			sor[x] = c;
+		if (fy < kiskep->hossz) {
+			unsigned char c = kiskep->tomb[fy];
+			if( c != lyuk )
+				sor[x] = c;
+		}
 
 		futox += dx;
 		futoy += dy;
@@ -84,7 +86,7 @@ void egysor( unsigned char lyuk, short szam, unsigned char* sor,
 
 // Ez a fuggveny kilogas eseten hivodik meg, plussz parametere xhossz:
 void egysor( unsigned char lyuk, short szam, unsigned char* sor,
-		unsigned char* tomb, long futox, long futoy, long dx, long dy,
+		kiskep* kiskep, long futox, long futoy, long dx, long dy,
 		int xhossz ) {
 	short* pf_futox = (short*)(&futox);
 	pf_futox++;
@@ -97,9 +99,11 @@ void egysor( unsigned char lyuk, short szam, unsigned char* sor,
 		unsigned short fy = *pf_futoy;
 		fy = (fy << 8) + fx;
 
-		unsigned char c = tomb[fy];
-		if( c != lyuk )
-			sor[x] = c;
+		if (fy < kiskep->hossz) {
+			unsigned char c = kiskep->tomb[fy];
+			if( c != lyuk )
+				sor[x] = c;
+		}
 
 		futox += dx;
 		futoy += dy;
@@ -404,7 +408,7 @@ void dobozki( pic8* ppic8, kiskep* pkiskep, vekt2 u, vekt2 v, vekt2 r ) {
 				unsigned char* cim = ppic8->getptr( ybal );
 				cim += xbal;
 				int xhossz = Displaysizex-xbal;
-				egysor( lyuk, short(x2-xbal+1), cim, pkiskep->tomb,
+				egysor( lyuk, short(x2-xbal+1), cim, pkiskep,
 								xkiskep, ykiskep, invix, inviy, xhossz );
 			}
 			else {
@@ -451,7 +455,7 @@ void dobozki( pic8* ppic8, kiskep* pkiskep, vekt2 u, vekt2 v, vekt2 r ) {
 				}
 				unsigned char* cim = ppic8->getptr( ybal );
 				cim += xbal;
-				egysor( lyuk, short(x2-x1+1), cim, pkiskep->tomb,
+				egysor( lyuk, short(x2-x1+1), cim, pkiskep,
 								xkiskep, ykiskep, invix, inviy );
 			}
 			else {

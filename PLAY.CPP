@@ -215,7 +215,7 @@ void saveplay( long belyeg ) {
 				return;
 		}
 	}
-	if( Win_95 )
+	if( 0 )
 		strcat( tmp, ".rew" );
 	else
 		strcat( tmp, ".rec" );
@@ -316,7 +316,7 @@ int palyabe( int level, unsigned long belyeg, char* filenev ) {
 	if( level < 0 && !belyeg && !filenev )
 		hiba( "palyabe-ben level < 0 && !belyeg && !filenev!" );
 
-	char* kiirnev = "External level";
+	const char* kiirnev = "External level";
 	leveltomb_s *plev = NULL;
 	if( level >= 0 ) {
 		if( level >= MAXPALYASZAM )

@@ -79,7 +79,7 @@ int gyuru::beszur( int k ) {
 			ujponttomb[i].x = 0;
 			ujponttomb[i].y = 0;
 		}
-		for( i = 0; i < pontszam; i++ ) {
+		for( int i = 0; i < pontszam; i++ ) {
 			ujponttomb[i].x = ponttomb[i].x;
 			ujponttomb[i].y = ponttomb[i].y;
 		}

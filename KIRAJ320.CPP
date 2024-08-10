@@ -524,7 +524,7 @@ void kirajzol320( st320* pst, double t, palyaleiro* pleiro, int view,
                 sprintf( filenev, "snap%d.pcx", i );
             if( access( filenev, 0 ) != 0 ) {
                 forditkepet( ppicbuffer );
-                ppicbuffer->save( filenev, pleiro->pal->tomb );
+                //ppicbuffer->save( filenev, pleiro->pal->tomb );
                 forditkepet( ppicbuffer );
                 break;
             }

@@ -16,11 +16,14 @@ int mk_getstate( int kod );
 #define MK_PGUP   (33)
 #define MK_PGDOWN (34)
 #define MK_BACKSPACE (8)
+#define MK_DEL    (46)
 
 #define MK_STATE_S (83)
 #define MK_STATE_T (84)
 #define MK_STATE_V (86)
-#define MK_STATE_M (87) // Ezt meg nem irtam be (Snapshothoz)
+#define MK_STATE_M (77) // Ezt meg nem irtam be (Snapshothoz)
+#define MK_STATE_I (73)
+#define MK_STATE_N (78)
 
 #else
 

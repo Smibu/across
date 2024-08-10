@@ -199,7 +199,7 @@ static void setresolution( void ) {
 	}
 }
 
-static double setbikesize( double fakt, char* fejlec ) {
+static double setbikesize( double fakt, const char* fejlec ) {
 	while( 1 ) {
 		// Szoveg kiiras:
 		blt8( Korny->picbuffer, Korny->ppic_setsize );

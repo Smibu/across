@@ -26,15 +26,15 @@ int boxban( int x, int y, box boxa ) {
 		return 0;
 }
 
-int dialog( char* text1, char* text2, char* text3,
-			 char* text4, char* text5, char* text6,
-			 char* text7, char* text8, char* text9,
-			 char* text10, char* text11, char* text12,
-			 char* text13, char* text14, char* text15,
-			 char* text16, char* text17, char* text18,
-			 char* text19, char* text20, char* text21,
-			 char* text22, char* text23, char* text24 ) {
-	char* texttomb[30] = { text1, text2, text3, text4, text5, text6,
+int dialog( const char* text1, const char* text2, const char* text3,
+			 const char* text4, const char* text5, const char* text6,
+			 const char* text7, const char* text8, const char* text9,
+			 const char* text10, const char* text11, const char* text12,
+			 const char* text13, const char* text14, const char* text15,
+			 const char* text16, const char* text17, const char* text18,
+			 const char* text19, const char* text20, const char* text21,
+			 const char* text22, const char* text23, const char* text24 ) {
+	const char* texttomb[30] = { text1, text2, text3, text4, text5, text6,
 					   text7, text8, text9, text10, text11, text12,
 					   text13, text14, text15, text16, text17, text18,
 					   text19, text20, text21, text22, text23, text24 };
@@ -45,11 +45,11 @@ int dialog( char* text1, char* text2, char* text3,
 			break;
 		}
 	}
-	char* gombtomb[30];
-	for( i = 0; i < 24; i++ )
+	const char* gombtomb[30];
+	for( int i = 0; i < 24; i++ )
 		gombtomb[i] = NULL;
 	int gombszam = 0;
-	for( i = 0; i < textszam; i++ ) {
+	for( int i = 0; i < textszam; i++ ) {
 		if( strcmp( texttomb[i], "GOMBOK" ) == 0 ) {
 			gombszam = textszam-i-1;
 			if( gombszam <= 0 )
@@ -82,7 +82,7 @@ int dialog( char* text1, char* text2, char* text3,
 	invalidateegesz();
 
 	int xsize = 0;
-	for( i = 0; i < textszam; i++ )
+	for( int i = 0; i < textszam; i++ )
 		if( xsize < Pabc2->len( texttomb[i] ) + 16 )
 			xsize = Pabc2->len( texttomb[i] ) + 16;
 
@@ -93,7 +93,7 @@ int dialog( char* text1, char* text2, char* text3,
 	int x2 = 320+xsize/2;
 	int y2 = 240+ysize/2;
 	kirajzbox( Editbuffer, x1, y1, x2, y2, Dialogszin, Dialogszelszin );
-	for( i = 0; i < textszam; i++ )
+	for( int i = 0; i < textszam; i++ )
 		Pabc2->writekozep( Editbuffer, 320, y1+22+i*dy, texttomb[i] );
 
 	// Kirajzoljuk gombokat is:
@@ -113,7 +113,7 @@ int dialog( char* text1, char* text2, char* text3,
 	}
 	if( gombszam > 3 )
 		hiba( "uofiufriufr" );
-	for( i = 0; i < gombszam; i++ ) {
+	for( int i = 0; i < gombszam; i++ ) {
 		int xs = Pabc2->len( gombtomb[i] ) + 10;
 		gx2tomb[i] = gx1tomb[i] + xs/2;
 		gx1tomb[i] = gx1tomb[i] - xs/2;

@@ -1,6 +1,6 @@
 #include	"all.h"
 
-void pleasewait( char* nev ) {
+void pleasewait( const char* nev ) {
 	if( !Korny )
 		hiba( "pleasewait-ben Korny == NULL!" );
 	blt8( Korny->picbuffer, Korny->ppic_load );
@@ -319,9 +319,9 @@ void kornyezet::hatterszamitas( double tartxsize, double tartysize ) {
 
 #define DIALOG320SOR (7)
 
-void dialog320( char* text0, char* text1, char* text2, char* text3,
+void dialog320( const char* text0, const char* text1, char* text2, char* text3,
 				char* text4, char* text5, char* text6 ) {
-	char* sortomb[DIALOG320SOR];
+	const char* sortomb[DIALOG320SOR];
 	sortomb[0] = text0;
 	sortomb[1] = text1;
 	sortomb[2] = text2;
@@ -342,7 +342,7 @@ void dialog320( char* text0, char* text1, char* text2, char* text3,
 	int y0 = 160-dy*sorszam;
 
 	blt8( Korny->picbuffer, Korny->ppic_playmenu );
-	for( i = 0; i < sorszam; i++ )
+	for( int i = 0; i < sorszam; i++ )
 		Korny->pabc_playmenu->writekozep( Korny->picbuffer,
 										160, y0+i*dy, sortomb[i] );
 	lassufizre( Korny->picbuffer, Korny->pal_playmenu );

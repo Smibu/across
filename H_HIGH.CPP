@@ -78,7 +78,7 @@ void starthanghigh( void ) {
 	{ Pw42 = NEW(wav2*) wav2( Pw4 ); }
 	Pw42->reset();
 
-	for( i = 0; i < MAXWAV; i++ ) {
+	for( int i = 0; i < MAXWAV; i++ ) {
 		Ezmegy[i] = 0;
 		Kovhang[i] = 0;
 		Hangerok[i] = 0;

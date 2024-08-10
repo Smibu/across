@@ -50,12 +50,12 @@ int pic8::lefoglal( long xsizep, long ysizep ) {
 	for( int i = 0; i < ysizep; i++ ) {
 		sormuttomb[i] = NULL;
 	}
-	for( i = 0; i < szegnum; i++ ) {
+	for( int i = 0; i < szegnum; i++ ) {
 		szegmuttomb[i] = NULL;
 	}
 	if( vanplussz )
 		szegmuttomb[unsigned(szegnum)] = NULL;
-	for( i = 0; i < szegnum; i++ ) {
+	for( int i = 0; i < szegnum; i++ ) {
 		{ szegmuttomb[i] = NEW(unsigned char*) unsigned char[unsigned(egyszegben*xsizep)]; }
 		if( !szegmuttomb[i] ) {
 			uzenet( "pic8::alloc memory!" );
@@ -131,7 +131,7 @@ pic8::pic8( int xsizep, int ysizep, unsigned char** ppc ) {
 	success = 1;
 }
 
-pic8::pic8( char* nev, FILE* h ) {
+pic8::pic8( const char* nev, FILE* h ) {
 	nemdestrukt = 0;
 	success = 0;
 	sormuttomb = NULL;
@@ -139,7 +139,6 @@ pic8::pic8( char* nev, FILE* h ) {
 	fizkep = 0;
 	sprite = NULL;
 	spritehossz = NULL;
-	crccheck();
 	// Kiterjesztes megkeresese:
 	int i = strlen( nev ) - 1;
 	while( i >= 0 ) {
@@ -170,7 +169,7 @@ pic8::pic8( char* nev, FILE* h ) {
 
 
 
-int pic8::save( char* nev, unsigned char* pal, FILE* h ) {
+int pic8::save( const char* nev, unsigned char* pal, FILE* h ) {
 	if( !success ) {
 		hiba( "pic8::save-ben nem success!" );
 		return 0;
@@ -319,7 +318,7 @@ void pic8::fuggszegmens( int x, int y, int size, unsigned char szin ) {
 
 // VOX:
 
-void pic8::voxbeolvas( char* nev ) {
+void pic8::voxbeolvas( const char* nev ) {
 	FILE* h = qopen( nev, "rb" );
 	if( !h ) {
 		hiba( "pic8 voxbeolvaso nem tudta megnyitni file-t!: ", nev );
@@ -366,7 +365,7 @@ void pic8::voxbeolvas( char* nev ) {
 	success = 1;
 }
 
-int pic8::voxsave( char* nev ) {
+int pic8::voxsave( const char* nev ) {
 	FILE* h = fopen( nev, "wb" );
 	if( !h ) {
 		hiba( "pic8::voxsave-ben nem tudta megnyitni file-t!: ", nev );
@@ -395,7 +394,7 @@ int pic8::voxsave( char* nev ) {
 
 // MIX:
 
-void pic8::mixbeolvas( char* nev ) {
+void pic8::mixbeolvas( const char* nev ) {
 	FILE* h = qopen( nev, "rb" );
 	if( !h ) {
 		hiba( "pic8 mixbeolvaso tudta megnyitni file-t!: ", nev );
@@ -468,7 +467,7 @@ void pic8::mixbeolvas( char* nev ) {
 	l++;
 } */
 
-void pic8::spritebeolvas( char* nev, FILE* h ) {
+void pic8::spritebeolvas( const char* nev, FILE* h ) {
 	int volth = 1;
 	if( !h ) {
 		volth = 0;
@@ -556,7 +555,7 @@ void pic8::spritebeolvas( char* nev, FILE* h ) {
 	success = 1;
 }
 
-int pic8::spritesave( char* nev, FILE* h ) {
+int pic8::spritesave( const char* nev, FILE* h ) {
 	int volth = 1;
 	if( !h ) {
 		volth = 0;
@@ -614,7 +613,7 @@ struct	pcxdescriptor {
 	unsigned char	Padding[127-70+1];
 };
 
-void pic8::pcxbeolvas( char* nev ) {
+void pic8::pcxbeolvas( const char* nev ) {
 	// Gany:
 	success = 1;
 
@@ -702,7 +701,7 @@ static int numberofrepeats( pic8* ppic, int x, int y, int xsize ) {
 	return db;
 }
 
-int	pic8::pcxsave( char *nev, unsigned char* pal ) {
+int	pic8::pcxsave( const char *nev, unsigned char* pal ) {
 	FILE* h = fopen( nev, "wb" );
 	if( !h ) {
 		hiba( "pcxsave-ben nem nyilik file!: ", nev );
@@ -1004,7 +1003,7 @@ void blt8( pic8* pd, pic8* ps, int x, int y,
 	}
 } */
 
-int pcxtopal( char* nev, unsigned char* pal ) {
+int pcxtopal( const char* nev, unsigned char* pal ) {
 		// Paletta beolvasasa:
 	FILE* h = qopen( nev, "rb" );
 	if( !h ) {
@@ -1040,7 +1039,7 @@ int pcxtopal( char* nev, unsigned char* pal ) {
 	return 1;
 }
 
-int pcxtopal( char* nev, ddpal** ppddpal ) {
+int pcxtopal( const char* nev, ddpal** ppddpal ) {
 	unsigned char pal[768];
 	pcxtopal( nev, pal );
 	{ *ppddpal = NEW(ddpal*) ddpal( pal ); }
@@ -1126,9 +1125,10 @@ void lassufizre( pic8* ppic, ddpal* ppal ) {
 		}
 	}
 
-	unlockbackbuffer();
-	if( ppal )
+	if ( ppal )
 		ppal->set();
+
+	unlockbackbuffer();
 }
 
 // Egyenlore csak vizszintes es fuggoleges vonalak:

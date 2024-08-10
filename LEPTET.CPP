@@ -99,7 +99,7 @@ static void erokszamitasa( kor* pkor, vekt2 i1, vekt2 j1,
 	//surlodasverseny( Ftang, vtang );
 }
 
-static Voltfek = 0;
+static int Voltfek = 0;
 static double Dfek2 = 0, Dfek4 = 0;
 //static double Loket = 6.0;
 static double Loket = 12.0;
@@ -204,9 +204,6 @@ void leptet( double most, double dt, int gaz, int fek,
 		Kezdoomega2 = -1.0;
 		Ugras2kezd = -1.0;
 	}
-
-	if( crcido % 511 == 103 )
-		crccheck2();
 
 	// Most ugras kezdes, ha kell:
 	if( ugrik1 ) {

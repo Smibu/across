@@ -107,7 +107,7 @@ topol::topol( void ) {
 	lezart = 0;
 	for( int i = 0; i < MAXGYURU; i++ )
 		ptomb[i] = NULL;
-	for( i = 0; i < MAXKEREK; i++ )
+	for( int i = 0; i < MAXKEREK; i++ )
 		kerektomb[i] = NULL;
 
 	ptomb[0] = new gyuru;
@@ -180,7 +180,7 @@ void topol::kirajzol( void ) {
 			ptomb[i]->osszrajz();
 		}
 	}
-	for( i = 0; i < MAXKEREK; i++ ) {
+	for( int i = 0; i < MAXKEREK; i++ ) {
 		if( kerektomb[i] ) {
 			kerektomb[i]->kirajzol();
 		}
@@ -210,7 +210,7 @@ int topol::levegoben( gyuru* pgy, vekt2* pr ) {
 		return 0;
 }
 
-topol::topol( char* filenev, int kulso ) {
+topol::topol( const char* filenev, int kulso ) {
 	hibas = 0;
 	lezart = 0;
 
@@ -224,7 +224,7 @@ topol::topol( char* filenev, int kulso ) {
 
 	for( int i = 0; i < MAXGYURU; i++ )
 			ptomb[i] = NULL;
-	for( i = 0; i < MAXKEREK; i++ )
+	for( int i = 0; i < MAXKEREK; i++ )
 		kerektomb[i] = NULL;
 
 	// Verzio beolvasasa:
@@ -424,7 +424,7 @@ topol::topol( char* filenev, int kulso ) {
 	if( gyuruszam <= 0 )
 		hiba( "topol::topol-ban gyuruszam <= 0!" );
 
-	for( i = 0; i < gyuruszam; i++ ) {
+	for( int i = 0; i < gyuruszam; i++ ) {
 		// Beolvassa sok gyurut:
 		ptomb[i] = new gyuru( h );
 	}
@@ -440,7 +440,7 @@ topol::topol( char* filenev, int kulso ) {
 	if( kerekszam <= 0 )
 		hiba( "topol::topol-ban kerekszam <= 0!" );
 
-	for( i = 0; i < kerekszam; i++ ) {
+	for( int i = 0; i < kerekszam; i++ ) {
 		// Beolvassa sok gyurut:
 		kerektomb[i] = new kerek( h );
 	}
@@ -540,19 +540,19 @@ void topol::save( char* filenev ) {
 	}
 	double gyuruirtszam = gyuruszam+0.4643643;
 	fwrite( &gyuruirtszam, 1, sizeof( gyuruirtszam ), h );
-	for( i = 0; i < MAXGYURU; i++ ) {
+	for( int i = 0; i < MAXGYURU; i++ ) {
 		if( ptomb[i] )
 			ptomb[i]->save( h, this );
 	}
 	// Kimentjuk kerekeket:
 	int kerekszam = 0;
-	for( i = 0; i < MAXKEREK; i++ ) {
+	for( int i = 0; i < MAXKEREK; i++ ) {
 		if( kerektomb[i] )
 			kerekszam++;
 	}
 	double kerekirtszam = kerekszam+0.4643643;
 	fwrite( &kerekirtszam, 1, sizeof( kerekirtszam ), h );
-	for( i = 0; i < MAXKEREK; i++ ) {
+	for( int i = 0; i < MAXKEREK; i++ ) {
 		if( kerektomb[i] )
 			kerektomb[i]->save( h );
 	}
@@ -577,7 +577,7 @@ void topol::getminmax( double* px1, double* py1, double* px2, double* py2,
 		}
 	}
 	if( kerekkel ) {
-		for( i = 0; i < MAXKEREK; i++ ) {
+		for( int i = 0; i < MAXKEREK; i++ ) {
 			if( kerektomb[i] ) {
 				if( *px1 > kerektomb[i]->r.x )
 					*px1 = kerektomb[i]->r.x;
@@ -599,7 +599,7 @@ double topol::belyegszamitas( void ) {
 			belyeg += ptomb[i]->belyegszamitas();
 		}
 	}
-	for( i = 0; i < MAXKEREK; i++ ) {
+	for( int i = 0; i < MAXKEREK; i++ ) {
 		if( kerektomb[i] ) {
 			belyeg += kerektomb[i]->belyegszamitas();
 		}
@@ -626,7 +626,7 @@ void topol::checklevelforsarvari( void ) {
 			hiba( "checklevelforsarvari-ban tul sok gyuru!" );
 
 		int kerekszam = 0;
-		for( i = 0; i < MAXKEREK; i++ ) {
+		for( int i = 0; i < MAXKEREK; i++ ) {
 			if( kerektomb[i] ) {
 				kerekszam++;
 			}
@@ -668,7 +668,8 @@ unsigned long getbelyeg( char* nev ) {
 // Igazzal ter vissza, ha megvan nev;
 int getbelyegheznev( unsigned long belyeg, char* nev ) {
 	find_t ffblk;
-	int done = _dos_findfirst( "*.lev", _A_NORMAL, &ffblk );
+	intptr_t handle;
+	int done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
 	while( !done ) {
 		if( getbelyeg( ffblk.name ) == belyeg ) {
 			// Megvan level file neve:
@@ -676,8 +677,9 @@ int getbelyegheznev( unsigned long belyeg, char* nev ) {
 			return 1;
 		}
 
-		done = _dos_findnext( &ffblk );
+		done = findnextfile( handle, &ffblk );
 	}
+	findclose(handle);
 	return 0;
 }
 
