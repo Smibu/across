@@ -24,6 +24,9 @@ public:
 unsigned char** lockbackbuffer( int* pxs, int* pys );
 void unlockbackbuffer( void ); // Ki is teszi
 
+const int MAX_RES_X = 1920;
+const int MAX_RES_Y = 1080;
+
 // res: 1 -> 320x200, 4 -> 640x480
 void setresdd( int res );
 

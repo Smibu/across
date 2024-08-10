@@ -137,6 +137,8 @@ void kirajzol320( st320* pst, double t, palyaleiro* pleiro, int view,
         res = 3;
     if( sy == 480 )
         res = 4;
+    if (sy == 1080)
+        res = 5;
     if( !res )
         hiba( "kirajzol320-ban !res!" );
 

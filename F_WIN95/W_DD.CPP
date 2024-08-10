@@ -33,7 +33,7 @@ static int Elsosetresdd = 1;
 void setresdd( int res ) {
 	if( Reswdd == res )
    	return;
-	if( res != 1 && res != 2 && res != 3 && res != 4 )
+	if( res != 1 && res != 2 && res != 3 && res != 4 && res != 5 )
    	hiba( "setresdd-ben res != 1 && res != 2 && res != 3 && res != 4!" );
     int Ddxsize = -1, Ddysize = -1;
 	if( res == 1 ) {
@@ -52,6 +52,10 @@ void setresdd( int res ) {
 		Ddxsize = 640;
 	   Ddysize = 480;
 	}
+   if (res == 5) {
+       Ddxsize = 1920;
+       Ddysize = 1080;
+   }
 
    if( !Elsosetresdd ) {
    	// Torli elozo feluleteket:
@@ -219,7 +223,7 @@ void ddinit( void ) {
    */
 }
 
-static unsigned char* Mutbuffer[480];
+static unsigned char* Mutbuffer[MAX_RES_Y];
 static int Bufflocked = 0;
 
 unsigned char** lockbackbuffer( int* pxs, int* pys ) {

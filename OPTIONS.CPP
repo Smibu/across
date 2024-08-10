@@ -105,7 +105,7 @@ static void setresolution( void ) {
 	// Valasztas:
 	if( Win_95 ) {
 		// WIN95-os valasztas:
-		val.szam = 4;
+		val.szam = 5;
 
 		val.kur = -1;
 		if( State->res == 1 )
@@ -116,6 +116,8 @@ static void setresolution( void ) {
 			val.kur = 2;
 		if( State->res == 4 )
 			val.kur = 3;
+		if (State->res == 5)
+			val.kur = 4;
 		if( val.kur < 0 )
 			hiba( "setresolution-ban val.kur < 0!" );
 
@@ -131,6 +133,7 @@ static void setresolution( void ) {
 		strcpy( Korny->rubrikak[1], "320x240" );
 		strcpy( Korny->rubrikak[2], "640x400" );
 		strcpy( Korny->rubrikak[3], "640x480" );
+		strcpy( Korny->rubrikak[4], "1920x1080" );
 
 		int eredmeny = val.valassz( Korny->pal_times );
 
@@ -148,6 +151,9 @@ static void setresolution( void ) {
 		}
 		if( eredmeny == 3 ) {
 			State->res = 4;
+		}
+		if (eredmeny == 4) {
+			State->res = 5;
 		}
 	}
 	else {
@@ -395,6 +401,8 @@ void options( void ) {
 			strcpy( Korny->rubrikak[0], "Video mode:     640x400" );
 		if( State->res == 4 )
 			strcpy( Korny->rubrikak[0], "Video mode:     640x480" );
+		if (State->res == 5)
+			strcpy(Korny->rubrikak[0], "Video mode:  1920x1080");
 
 		strcpy( Korny->rubrikak[1], "Bike Size:" );
 		// Kirajzoljuk kis size teglalapot:

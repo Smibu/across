@@ -179,12 +179,6 @@ void kidigit( char* time1, double time2d, unsigned char szin1,
 		Highres = 1;
 
 		x = 28;
-		if( res == 3 )
-			// 400
-			y = 340;
-		else
-			// 480
-			y = 420;
 
 		Vonalvizhossz = 10,
 		Vonalfugghossz = 16;
@@ -192,6 +186,18 @@ void kidigit( char* time1, double time2d, unsigned char szin1,
 		Digdx = 16,
 		Kozdx = 24,
 		Koztesdx = 364;
+
+		if (res == 3)
+			// 400
+			y = 340;
+		else if (res == 4)
+			// 480
+			y = 420;
+		else {
+			// 1080
+			y = 1020;
+			Koztesdx = 1660;
+		}
 
 		Digitxsize = Digdx*7+Kozdx*4+Koztesdx,
 		Digitysize = 2*Vonalfugghossz+5;

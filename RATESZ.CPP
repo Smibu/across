@@ -71,9 +71,9 @@ void ratesz::teddra( int x, int y, pic8* phatter, magassag* pm ) {
 	// Nem ervenyes sorok beallitasa uj y fuggvenyeben:
 	if( elsohivas ) {
 		elsohivas = 0;
-		y0 = y - 1000;
+		y0 = y - 2000;
 		if( y0 < 0 )
-			y0 = y + 1000;
+			y0 = y + 2000;
 	}
 	// Beallitjuk sorokat:
 	if( y < y0 ) {
@@ -151,7 +151,7 @@ void ratesz::teddra( int x, int y, pic8* phatter, magassag* pm ) {
 				hiba( "ratesz::teddra-ban !phat || (!elso && phat->y < x)!" );
 		#endif
 		int futx = x;
-		hat* phatkov = phat->pkov;
+		hat* phatkov = phat->pkov; // crashes often here under ASan after lev load, workaround in play.cpp
 
 		// Atlepjuk azokat a hat-okat, amelyek tul koran vannak:
 		while( phatkov && phatkov->y < x ) {

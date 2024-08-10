@@ -1,7 +1,7 @@
 #include	"all.h"
 
 //double Magmaxelemszam = 7750;
-double Magmaxelemszam = 16200;
+double Magmaxelemszam = 50000;
 
 magassag::magassag( int xsizepar ) {
 	oszlopok = NULL;
@@ -243,13 +243,15 @@ vekt2 magassagokeloallitasa( szakaszok* pszakok,
 		psz = pszakok->getnextszak();
 	}
 
-	vekt2 origo = vekt2( minx-400/Aranyx, miny-300/Aranyy );
+	const int xmargin = 800;
+	const int ymargin = 600;
+	vekt2 origo = vekt2( minx-xmargin/Aranyx, miny-ymargin/Aranyy );
 	// Egy kis veletlenites!:
 	origo.x += 0.0000145839857463;
 	origo.y += 0.0000295874632574;
 
-	double xsize = (maxx+400/Aranyx)-origo.x;
-	double ysize = (maxy+300/Aranyy)-origo.y;
+	double xsize = (maxx+xmargin/Aranyx)-origo.x;
+	double ysize = (maxy+ymargin/Aranyy)-origo.y;
 
 	// Lefoglalja magassagokat:
 	{ *ppmviz = NEW(magassag*) magassag( xsize*Aranyx ); }

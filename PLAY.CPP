@@ -241,15 +241,18 @@ static void setglobals( int res, double fakt ) {
 		Displaysizex = 640;
 		Displaysizey = 480;
 	}
+	if ( res == 5 ) {
+		Displaysizex = 1920;
+		Displaysizey = 1080;
+	}
 	if( Displaysizex < 1 )
 		hiba( "palyabe-ben Displaysizex < 1!" );
 
 	// Aranyok:
 	Arany = 100.0;
-	Arany *= Displaysizex/320.0;
 	Arany *= fakt;
-	Aranyx = Arany*320.0/640.0;
-	Aranyy = Aranyx*Displaysizey/Displaysizex*(640.0/480.0);
+	Aranyx = Arany;
+	Aranyy = Aranyx;
 
 	// Zoomok:
 	if( res == 1 ) {
@@ -280,9 +283,18 @@ static void setglobals( int res, double fakt ) {
 		Config.viewyorig = 319;
 		Config.viewxtolas = 320;
 	}
+	if (res == 5) {
+		Config.viewxsize = 400;
+		Config.viewysize = 160;
+		Config.viewxorig = 60;
+		Config.viewyorig = 0;
+		Config.viewxtolas = 0;
+	}
 	//Config.zoom = 10;
 	// Minel nagyobb zoom, annal nagyobb resz latszik ablakban:
-	if( res == 3 || res == 4 )
+	if( res == 5 )
+		Config.zoom = 0.28*Aranyx*0.75;
+	else if( res == 3 || res == 4 )
 		Config.zoom = 0.28*Aranyx*0.5;
 	else
 		Config.zoom = 0.28*Aranyx;
@@ -347,8 +359,9 @@ int palyabe( int level, unsigned long belyeg, char* filenev ) {
 
 	setglobals( State->res, fakt );
 
-	if( ujraegesz ) {
-		pleasewait( kiirnev );
+	// workaround for crash in ratesz::teddra, loading time is quick enough anyway
+	if( 1 ) {
+		//pleasewait( kiirnev );
 		Korny->leiroazonosito = ujleiroazonosito;
 		DELETE Korny->pleiro; }
 		{ Korny->pleiro = NEW(palyaleiro*) palyaleiro( Leironevtomb[ujleiroazonosito] ); }
