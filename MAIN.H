@@ -15,6 +15,8 @@ extern int Otszoros; // Ha igaz, mindig otszor rakja ki palyat
 extern int Dupladuplabuffer; // Ha igaz duplan huzza az idot (Win95)
 extern int Snapenabled; // Ha igaz, akkor m-re kiment egy kepet
 
+extern int Centeredcam;
+
 #define bytecopy(a,b,c) memcpy( a, b, c )
 
 void semmi( void );

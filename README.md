@@ -10,7 +10,7 @@ This is an incomplete port of Action SuperCross to Windows.
 
 ## Changes
 
-* Centered camera
+* Centered camera by default (disable with `nocenteredcam.inf` file)
 * Death/finish delay removed
 * 1920x1080 resolution support
 * Alovolt (comma key)
