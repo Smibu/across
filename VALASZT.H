@@ -1,6 +1,6 @@
 
 #define MAXRUBRIKAHOSSZ (40)
-#define MAXRUBRIKASZAM (600)
+#define MAXRUBRIKASZAM (20000)
 
 typedef char rubrika[MAXRUBRIKAHOSSZ+2];
 
