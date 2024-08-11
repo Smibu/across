@@ -1,12 +1,30 @@
 # Action SuperCross Windows port
 
-This is a partial port of Action SuperCross to Windows.
+This is an incomplete port of Action SuperCross to Windows.
 
-Known limitations:
+## Known limitations
 
 * Editor does not work
 * Sound does not work
 * Requires a DirectDraw wrapper library (e.g. DXGL)
+
+## Changes
+
+* Centered camera
+* Death/finish delay removed
+* 1920x1080 resolution support
+* Alovolt (comma key)
+* Item limit in lists increased to 20000 (from 600)
+
+## Building
+
+Generate Visual Studio project:
+
+```
+cmake -G "Visual Studio 17 2022" -A Win32 -B build .
+```
+
+## Other info
 
 Upstream repo is https://github.com/elastomania/across. Original readme is below.
 
