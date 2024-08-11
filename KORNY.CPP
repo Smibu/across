@@ -480,9 +480,14 @@ int Levellista[100] = {
 	/*40:*/
 	26, // Hang Tight
 	31, // Apple Harvest
+	11, // Fair Trial
+	13, // Slippery Slope
+	14, // The Turnaround
+	16, // On Top
+	22, // The Enigma
 	57, // Visit our homepage
 	39, // EZ MAR NEM PALYA
-	39, 39, 39, 39, 39, 39,
+	39,
 	/*50:*/
 	39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
 	/*60:*/

@@ -3,7 +3,7 @@
 #ifdef SARVARI
 	int Palyaszam = 17; // End-del egyutt
 #else
-	int Palyaszam = 43; // Vizittel egyutt
+	int Palyaszam = 48; // Vizittel egyutt
 #endif
 
 
