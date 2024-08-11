@@ -295,7 +295,7 @@ void unlockbackbuffer( void ) {
    	hiba( "Pddsback->Unlock did not succeed!" );
    ddrval = DDERR_WASSTILLDRAWING;
    while( ddrval == DDERR_WASSTILLDRAWING )
-		ddrval = Pddsprimary->Flip( NULL, 0 );
+		ddrval = Pddsprimary->Flip( NULL, DDFLIP_NOVSYNC );
    if( ddrval != DD_OK ) {
   		for( int i = 0; i < 1000; i++ ) {
         	if( MAKE_DDHRESULT( i ) == ddrval ) {
