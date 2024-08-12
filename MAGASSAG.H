@@ -1,7 +1,7 @@
 
 #define EGYTOMBHAT (1000)
 
-#define ERTEKKESZLET (15000)
+#define ERTEKKESZLET (30000)
 
 extern double Magmaxelemszam;
 
