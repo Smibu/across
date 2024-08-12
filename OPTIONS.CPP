@@ -206,6 +206,8 @@ static void setresolution( void ) {
 }
 
 static double setbikesize( double fakt, const char* fejlec ) {
+	const double minsize = 0.25;
+	const double maxsize = 1.5;
 	while( 1 ) {
 		// Szoveg kiiras:
 		blt8( Korny->picbuffer, Korny->ppic_setsize );
@@ -222,7 +224,7 @@ static double setbikesize( double fakt, const char* fejlec ) {
 		int yo = 40;
 		int xs = 100;
 		int ys = (195.0/266)*xs;
-		rarajzmot( Korny->picbuffer, xo, yo, xo+xs, yo+ys, fakt/0.676 );
+		rarajzmot( Korny->picbuffer, xo, yo, xo+xs, yo+ys, fakt/maxsize);
 
 		// Kep kiteves:
 		lassufizre( Korny->picbuffer, Korny->pal_setsize );
@@ -231,13 +233,13 @@ static double setbikesize( double fakt, const char* fejlec ) {
 		int c = mk_getextchar();
 		if( c == MK_UP ) {
 			fakt *= 1.1;
-			if( fakt > 0.676 )
-				fakt = 0.676;
+			if( fakt > maxsize )
+				fakt = maxsize;
 		}
 		if( c == MK_DOWN ) {
 			fakt /= 1.1;
-			if( fakt < 0.5 )
-				fakt = 0.5;
+			if( fakt < minsize )
+				fakt = minsize;
 		}
 		if( c == MK_ENTER || c == MK_ESC )
 			return fakt;
