@@ -16,6 +16,20 @@ static void* Dummypvoid = NULL;
 
 void w_dosbeallitasok( void );
 
+void initrawinput(HWND hWnd)
+{
+	RAWINPUTDEVICE rid[1];
+	rid[0].usUsagePage = 0x01;
+	rid[0].usUsage = 0x06;
+	rid[0].dwFlags = RIDEV_INPUTSINK;
+	rid[0].hwndTarget = hWnd;
+
+	if (RegisterRawInputDevices(rid, 1, sizeof(RAWINPUTDEVICE)) == FALSE)
+	{
+		hiba("couldn't register raw input device");
+	}
+}
+
 int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				LPSTR lpszCmdLine, int CmdShow ) {
 
@@ -64,7 +78,7 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	if ( !GhWnd )
 		return( FALSE );
-
+	initrawinput(GhWnd);
 	ShowWindow( GhWnd, CmdShow );
 	UpdateWindow( GhWnd );
 
@@ -126,12 +140,26 @@ static LRESULT CALLBACK WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 			PostQuitMessage( 0 );
 			break;
 		// Billentyuzet uzenetek:
-		case WM_KEYDOWN:
-			mk_wmkeydown( wParam );
+		case WM_INPUT:
+		{
+			UINT dwSize = sizeof(RAWINPUT);
+			static RAWINPUT raw;
+
+			GetRawInputData((HRAWINPUT)lParam, RID_INPUT, &raw, &dwSize, sizeof(RAWINPUTHEADER));
+
+			if (raw.header.dwType == RIM_TYPEKEYBOARD)
+			{
+				if (raw.data.keyboard.Message == WM_KEYDOWN || raw.data.keyboard.Message == WM_SYSKEYDOWN)
+				{
+					mk_wmkeydown(raw.data.keyboard.VKey);
+				}
+				else if (raw.data.keyboard.Message == WM_KEYUP || raw.data.keyboard.Message == WM_SYSKEYUP)
+				{
+					mk_wmkeyup(raw.data.keyboard.VKey);
+				}
+			}
 			break;
-		case WM_KEYUP:
-			mk_wmkeyup( wParam );
-			break;
+		}
 		case WM_CHAR:
 			mk_wmchar( wParam );
 			break;
