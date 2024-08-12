@@ -669,7 +669,7 @@ void loadszakaszok( const char* nev, int kulso, szakaszok** ppszak,
 
 	FILE* h = NULL;
 	if( kulso )
-		h = fopen( nev, "rt" );
+		h = fopen( createpath(nev, "lev\\"), "rt");
 	else
 		h = qopen( nev, "rt" );
 	if( !h )

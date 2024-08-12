@@ -15,6 +15,42 @@ int findclose(intptr_t handle)
 	return _findclose(handle);
 }
 
+const char* getlevfilepattern() {
+	if (Newdirs) {
+		return "lev\\*.lev";
+	}
+	else {
+		return "*.lev";
+	}
+}
+
+const char* getrecfilepattern() {
+	if (Newdirs) {
+		return "rec\\*.rec";
+	}
+	else {
+		return "*.rec";
+	}
+}
+
+const int MAX_SIZE = 30;
+
+const char* createpath(const char* str, const char* prefix) {
+	static char result[MAX_SIZE];
+
+	if (Newdirs) {
+		strncpy(result, prefix, MAX_SIZE - 1);
+		result[MAX_SIZE - 1] = '\0';
+		strncat(result, str, MAX_SIZE - strlen(result) - 1);
+	}
+	else {
+		strncpy(result, str, MAX_SIZE - 1);
+		result[MAX_SIZE - 1] = '\0';
+	}
+
+	return result;
+}
+
 int s_random(int tartomany) {
 	return rand() % tartomany;
 }

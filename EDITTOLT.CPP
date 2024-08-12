@@ -117,7 +117,7 @@ void tolt_open( void ) {
 	int done;
 	find_t ffblk;
 	intptr_t handle;
-	done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
+	done = findfirstfile( getlevfilepattern(), _A_NORMAL, &ffblk, &handle );
 	int nevszam = 0;
 	while( !done ) {
 		if( strlen( ffblk.name ) > 14 )
@@ -288,7 +288,7 @@ void kivalasztkezdetit( void ) {
 	int done;
 	find_t ffblk;
 	intptr_t handle;
-	done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
+	done = findfirstfile( getlevfilepattern(), _A_NORMAL, &ffblk, &handle );
 	int nevszam = 0;
 	while( !done ) {
 		if( strlen( ffblk.name ) > 14 )

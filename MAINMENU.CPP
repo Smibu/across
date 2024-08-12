@@ -69,7 +69,7 @@ static void replay( void ) {
 	if( 0 )
 		done = findfirstfile( "*.rew", _A_NORMAL, &ffblk, &handle );
 	else
-		done = findfirstfile( "*.rec", _A_NORMAL, &ffblk, &handle );
+		done = findfirstfile( getrecfilepattern(), _A_NORMAL, &ffblk, &handle);
 	// Ez mindig eggyel tobb, mint valosag, mivel az elso
 	// rubrika mindig 'Randomizer':
 	int szamuk = 1;

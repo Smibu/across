@@ -175,7 +175,7 @@ void playextmenu( void ) {
 		find_t ffblk;
 		int done;
 		intptr_t handle;
-		done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
+		done = findfirstfile( getlevfilepattern(), _A_NORMAL, &ffblk, &handle );
 		int szam = 0;
 		while( !done ) {
 			char* filenev = ffblk.name;

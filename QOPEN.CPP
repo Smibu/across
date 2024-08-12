@@ -189,7 +189,13 @@ FILE* qopen( const char* nev, const char* paramok ) {
 	}
 	else {
 		Nyitva++;
-		char tmp[30] = "..\\files\\";
+		char tmp[30];
+		if (Newdirs) {
+			strcpy(tmp, "files\\");
+		}
+		else {
+			strcpy(tmp, "..\\files\\");
+		}
 		if( strlen( nev ) > 12 || nev[0] == '.' )
 			hiba( "Hibas nev qopen-ben!: ", nev );
 		strcat( tmp, nev );

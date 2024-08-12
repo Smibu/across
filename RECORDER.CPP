@@ -199,7 +199,7 @@ long recorder::load( char* nev, int demo ) {
 	if( demo )
 		h = qopen( nev, "rb" );
 	else
-		h = fopen( nev, "rb" );
+		h = fopen( createpath(nev, "rec\\"), "rb");
 	if( !h )
 		hiba( "Nem sikerult megnyitni recorded file-t!: ", nev );
 	betoltve = 0;
@@ -375,7 +375,7 @@ void recorder::save( char* nev, long belyeg ) {
 		hiba( "save-ben betoltve == 0!" );
 	FILE* h;
 	// Itt meg kell hagyni fopen-t!:
-	h = fopen( nev, "wb" );
+	h = fopen( createpath(nev, "rec\\"), "wb");
 	if( !h )
 		hiba( "Nem sikerult megnyitni irasra recorded file-t!: ", nev );
 

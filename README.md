@@ -11,6 +11,7 @@ This is an incomplete port of Action SuperCross to Windows.
 ## Changes
 
 * Centered camera by default (disable with `nocenteredcam.inf` file)
+* Option to use lev and rec subdirs, and get unpacked res files from exe dir instead of parent dir (enable with `newdirs.inf`)
 * Death/finish delay removed
 * 1920x1080 resolution support
 * Alovolt (comma key)

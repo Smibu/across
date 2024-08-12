@@ -19,6 +19,7 @@ int Sarvari = 0;
 pic8* Pscr8 = NULL;
 
 int Centeredcam = 1;
+int Newdirs = 0;
 
 static void ugraseldontes(void) {
 	if (access("fordit.inf", 0) == 0)
@@ -34,6 +35,13 @@ static void checkcenteredcam(void) {
 		Centeredcam = 1;
 }
 
+static void checknewdirs(void) {
+	if (access("newdirs.inf", 0) == 0)
+		Newdirs = 1;
+	else
+		Newdirs = 0;
+}
+
 void mv_main( void ) {
 	mv_startstopper();
 
@@ -47,6 +55,7 @@ void mv_main( void ) {
 	initadatok();
 	ugraseldontes();
 	checkcenteredcam();
+	checknewdirs();
 
 	teljes();
 }

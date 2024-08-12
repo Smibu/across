@@ -216,7 +216,7 @@ topol::topol( const char* filenev, int kulso ) {
 
 	FILE* h = NULL;
 	if( kulso )
-		h = fopen( filenev, "rb" );
+		h = fopen( createpath(filenev, "lev\\"), "rb");
 	else
 		h = qopen( filenev, "rb" );
 	if( !h )
@@ -669,7 +669,7 @@ unsigned long getbelyeg( char* nev ) {
 int getbelyegheznev( unsigned long belyeg, char* nev ) {
 	find_t ffblk;
 	intptr_t handle;
-	int done = findfirstfile( "*.lev", _A_NORMAL, &ffblk, &handle );
+	int done = findfirstfile( getlevfilepattern(), _A_NORMAL, &ffblk, &handle );
 	while( !done ) {
 		if( getbelyeg( ffblk.name ) == belyeg ) {
 			// Megvan level file neve:
@@ -688,7 +688,7 @@ int getbelyegheznev( unsigned long belyeg, char* nev ) {
 char* getlevelname( char* nev ) {
 	static char levelnamebuffer[LEVELNAMEHOSSZ+4] = "";
 
-	FILE* h = fopen( nev, "rb" );
+	FILE* h = fopen( createpath(nev, "lev\\"), "rb");
 	if( !h )
 		return NULL;
 
