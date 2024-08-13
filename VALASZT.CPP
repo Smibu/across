@@ -36,6 +36,9 @@ int valaszt::valassz( ddpal* ppal, int tobbrajz ) {
 	kirajz( felso, ppal );
 	if( tobbrajz )
 		kirajz( felso, ppal );
+	while (mk_getstate(MK_DOWN)) {
+		mv_check();
+	}
 	while( 1 ) {
 		mk_emptychar();
 		int c = mk_getextchar();
