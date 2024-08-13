@@ -246,6 +246,71 @@ static double setbikesize( double fakt, const char* fejlec ) {
 	}
 }
 
+static void setcontrols() {
+	const char* keynames[] = {
+		"Gas",
+		"Brake",
+		"Brake alias",
+		"Left volt",
+		"Right volt",
+		"Alovolt",
+		"Turn",
+		"Timer",
+		"Minimap",
+	};
+	int currkey = 0;
+	while (1) {
+		blt8(Korny->picbuffer, Korny->ppic_setsize);
+		Korny->pabc_setsize->writekozep(Korny->picbuffer, 160, 10, "Customize controls");
+		Korny->pabc_setsize->writekozep(Korny->picbuffer, 160, 60,
+			"Press a key for:");
+		Korny->pabc_setsize->writekozep(Korny->picbuffer, 160, 90,
+			keynames[currkey]);
+
+		Korny->pabc_setsize->writekozep(Korny->picbuffer, 160, 150,
+			"Press ESC to skip the rest!");
+
+		lassufizre(Korny->picbuffer, Korny->pal_setsize);
+
+		int c = mk_getkey();
+		if (c == SCAN_ESC) {
+			return;
+		}
+
+		if (currkey == 0) {
+			State->gas = c;
+		}
+		else if (currkey == 1) {
+			State->brake = c;
+		}
+		else if (currkey == 2) {
+			State->brakealias = c;
+		}
+		else if (currkey == 3) {
+			State->leftvolt = c;
+		}
+		else if (currkey == 4) {
+			State->rightvolt = c;
+		}
+		else if (currkey == 5) {
+			State->alovolt = c;
+		}
+		else if (currkey == 6) {
+			State->turn = c;
+		}
+		else if (currkey == 7) {
+			State->timer = c;
+		}
+		else if (currkey == 8) {
+			State->minimap = c;
+		}
+
+		currkey++;
+		if (currkey == 9)
+			return;
+	}
+}
+
 // VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME
 // VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME
 // VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME VOLUME
@@ -383,30 +448,30 @@ void options( void ) {
 	int kurrens = 0;
 	while( 1 ) {
 		blt8( Korny->picbuffer, Korny->ppic_playmenu );
-		Korny->pabc_playmenu->write( Korny->picbuffer, 95, 7, "Options/Help" );
 		// Valasztas:
-		val.szam = 5;
+		val.szam = 6;
 		val.kur = kurrens;
 		val.egykepen = 6;
 		val.x0 = 48;
-		val.y0 = 46;
+		val.y0 = 15;
 		val.dy = 31;
 		val.hatter = Korny->picbuffer;
 		val.pabc = Korny->pabc_playmenu;
 		val.escelheto = 1;
+		strcpy(Korny->rubrikak[0], "Customize controls");
 
 		if( State->res == 1 )
-			strcpy( Korny->rubrikak[0], "Video mode:     320x200" );
+			strcpy( Korny->rubrikak[1], "Video mode:     320x200" );
 		if( State->res == 2 )
-			strcpy( Korny->rubrikak[0], "Video mode:     320x240" );
+			strcpy( Korny->rubrikak[1], "Video mode:     320x240" );
 		if( State->res == 3 )
-			strcpy( Korny->rubrikak[0], "Video mode:     640x400" );
+			strcpy( Korny->rubrikak[1], "Video mode:     640x400" );
 		if( State->res == 4 )
-			strcpy( Korny->rubrikak[0], "Video mode:     640x480" );
+			strcpy( Korny->rubrikak[1], "Video mode:     640x480" );
 		if (State->res == 5)
-			strcpy(Korny->rubrikak[0], "Video mode:  1920x1080");
+			strcpy(Korny->rubrikak[1], "Video mode:  1920x1080");
 
-		strcpy( Korny->rubrikak[1], "Bike Size:" );
+		strcpy( Korny->rubrikak[2], "Bike Size:" );
 		// Kirajzoljuk kis size teglalapot:
 		int xo = 231;
 		int yo = 71; //99
@@ -415,7 +480,7 @@ void options( void ) {
 		rarajzmot( Korny->picbuffer, xo, yo, xo+xs, yo+ys, State->fakt/0.751 );
 
 		// Kirajzoljuk sound volume-ot:
-		strcpy( Korny->rubrikak[2], "Sound Volume:" );
+		strcpy( Korny->rubrikak[3], "Sound Volume:" );
 		int x1 = 225;
 		yo = 123; // 158
 		int x2 = 295;
@@ -423,10 +488,10 @@ void options( void ) {
 
 		// Jatekos valasztas:
 		jatekos* pj = &State->jatekosok[State->jatekos];
-		sprintf( Korny->rubrikak[3], "Player:   %s", pj->nev );
+		sprintf( Korny->rubrikak[4], "Player:   %s", pj->nev );
 
 		// Help szoveget is kiiratjuk:
-		strcpy( Korny->rubrikak[4], "Help" );
+		strcpy( Korny->rubrikak[5], "Help" );
 
 		kurrens = val.valassz( Korny->pal_playmenu );
 
@@ -436,19 +501,22 @@ void options( void ) {
 		}
 
 		if( kurrens == 0 ) {
-			setresolution();
+			setcontrols();
 		}
 		if( kurrens == 1 ) {
+			setresolution();
+		}
+		if( kurrens == 2 ) {
 			State->fakt = setbikesize( State->fakt,
 									"Set Bike Size" );
 		}
-		if( kurrens == 2 ) {
+		if( kurrens == 3 ) {
 			State->soundvolume = setsoundvolume( State->soundvolume );
 		}
-		if( kurrens == 3 ) {
+		if( kurrens == 4 ) {
 			jatekosvalasztas( 1 );
 		}
-		if( kurrens == 4 ) {
+		if( kurrens == 5 ) {
 			help();
 		}
 	}

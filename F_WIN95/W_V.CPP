@@ -147,15 +147,15 @@ static LRESULT CALLBACK WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 
 			GetRawInputData((HRAWINPUT)lParam, RID_INPUT, &raw, &dwSize, sizeof(RAWINPUTHEADER));
 
-			if (raw.header.dwType == RIM_TYPEKEYBOARD)
+			if (raw.header.dwType == RIM_TYPEKEYBOARD && raw.data.keyboard.VKey != 255)
 			{
 				if (raw.data.keyboard.Message == WM_KEYDOWN || raw.data.keyboard.Message == WM_SYSKEYDOWN)
 				{
-					mk_wmkeydown(raw.data.keyboard.VKey);
+					mk_wmkeydown(raw.data.keyboard.MakeCode);
 				}
 				else if (raw.data.keyboard.Message == WM_KEYUP || raw.data.keyboard.Message == WM_SYSKEYUP)
 				{
-					mk_wmkeyup(raw.data.keyboard.VKey);
+					mk_wmkeyup(raw.data.keyboard.MakeCode);
 				}
 			}
 			break;

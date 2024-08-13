@@ -3,6 +3,7 @@
 int mk_getextchar( void );
 void mk_emptychar( void );
 int mk_kbhit( void );
+char mk_getkey( void );
 int mk_getstate( int kod );
 
 #ifdef W_95
@@ -25,6 +26,18 @@ int mk_getstate( int kod );
 #define MK_STATE_M (77) // Ezt meg nem irtam be (Snapshothoz)
 #define MK_STATE_I (73)
 #define MK_STATE_N (78)
+
+#define SCAN_ESC     (1)
+#define SCAN_UP     (72)
+#define SCAN_DOWN   (80)
+#define SCAN_LEFT   (75)
+#define SCAN_RIGHT  (77)
+#define SCAN_PGUP   (73)
+#define SCAN_PGDOWN (81)
+#define SCAN_SPACE  (57)
+#define SCAN_T      (20)
+#define SCAN_V      (47)
+#define SCAN_NUMPAD0 (82)
 
 #else
 

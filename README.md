@@ -10,11 +10,13 @@ This is an incomplete port of Action SuperCross to Windows.
 
 ## Changes
 
+* Customizable controls
 * Centered camera by default (disable with `nocenteredcam.inf` file)
 * Option to use lev and rec subdirs, and get unpacked res files from exe dir instead of parent dir (enable with `newdirs.inf`)
 * Death/finish delay removed
 * 1920x1080 resolution support
-* Alovolt (comma key)
+* Alovolt
+* Brake alias
 * Item limit in lists increased to 20000 (from 600)
 * Bike size (zoom) min and max bounds extended
 * Included 5 levels from Across 1.1 in internals (after Apple Harvest)

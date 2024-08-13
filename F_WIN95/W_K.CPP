@@ -56,22 +56,37 @@ int mk_getstate( int kod ) {
 	return 0;
 }
 
+char mk_getkey(void) {
+	mk_emptychar();
+	for (int i = 0; i < Maxkod; i++) {
+		Tomb[i] = 0;
+	}
+	while (1) {
+		mv_check();
+		for (int i = 0; i < Maxkod; i++) {
+			if (Tomb[i] == 1) {
+				return i;
+			}
+		}
+	}
+}
+
 
 // Kovetkezo billentyu fuggvenyek nem publikusak:
 void mk_wmkeydown( int kod ) {
 	if( kod >= 0 && kod < Maxkod )
 		Tomb[kod] = 1;
-	if( kod == MK_UP )
+	if( kod == SCAN_UP )
 		mk_wmchar( MK_UP );
-	if( kod == MK_DOWN )
+	if( kod == SCAN_DOWN )
 		mk_wmchar( MK_DOWN );
-	if( kod == MK_LEFT )
+	if( kod == SCAN_LEFT )
 		mk_wmchar( MK_LEFT );
-	if( kod == MK_RIGHT )
+	if( kod == SCAN_RIGHT )
 		mk_wmchar( MK_RIGHT );
-	if( kod == MK_PGUP )
+	if( kod == SCAN_PGUP )
 		mk_wmchar( MK_PGUP );
-	if( kod == MK_PGDOWN )
+	if( kod == SCAN_PGDOWN )
 		mk_wmchar( MK_PGDOWN );
 }
 

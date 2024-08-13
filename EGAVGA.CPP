@@ -41,14 +41,7 @@ int Hatra = 0;
 	line( 10, 10, 100, 10 );
 } */
 
-static int Lenyescape = MK_ESC;
-static int Lenygaz = MK_UP;
-static int Lenyfek = MK_DOWN;
-static int Lenyugras1 = MK_RIGHT;
-static int Lenyugras2 = MK_LEFT;
-static int Lenyspace = ' ';
-static int Lenyview = MK_STATE_V;
-static int Lenytimeki = MK_STATE_T;
+static int Lenyescape = SCAN_ESC;
 static int Lenyhang = MK_STATE_S;
 static int Lenysnap = MK_STATE_I;
 
@@ -161,16 +154,16 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 			// Ugras elintezese:
 			int ugrik1 = 0, ugrik2 = 0;
 			if( eddig > utolsougras + Ugroturelem && !replay ) {
-				int alo = mk_getstate(MK_COMMA);
-				if( ( (mk_getstate( Lenyugras1 ) || mk_getstate( MK_STATE_M ) || alo) && Sajatugras) ||
-					( (mk_getstate( Lenyugras2 ) || mk_getstate( MK_STATE_N ) || alo) && !Sajatugras)) {
+				int alo = mk_getstate(State->alovolt);
+				if( ( (mk_getstate( State->rightvolt ) || alo) && Sajatugras) ||
+					( (mk_getstate( State->leftvolt ) || alo) && !Sajatugras)) {
 					ugrik1 = 1;
 					utolsougras = eddig;
 					utolsougras1volt = 1;
 					startwavegyujto( WAV_UGRAS1, 0.99, -1 );
 				}
-				if( ( (mk_getstate( Lenyugras2 ) || mk_getstate( MK_STATE_N ) || alo) && Sajatugras) ||
-					( (mk_getstate( Lenyugras1 ) || mk_getstate( MK_STATE_M ) || alo) && !Sajatugras) ) {
+				if( ( (mk_getstate( State->leftvolt ) || alo) && Sajatugras) ||
+					( (mk_getstate( State->rightvolt ) || alo) && !Sajatugras) ) {
 					ugrik2 = 1;
 					utolsougras = eddig;
 					utolsougras1volt = 0;
@@ -199,8 +192,8 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 				leptet(
 					eddig,
 					dt,
-					mk_getstate( Lenygaz ) || mk_getstate( 'A' ),
-					mk_getstate( Lenyfek ) || mk_getstate( 'Z' ),
+					mk_getstate( State->gas ),
+					mk_getstate( State->brake ) || mk_getstate( State->brakealias ),
 					ugrik1,
 					ugrik2 );
 				if( prec )
@@ -246,12 +239,12 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 			//kinyom( inf.surlero*320 );
 			setsurlodas( inf.surlero );
 			double frekvencia = 1.0+fabs(Kor4.omega)*0.025;
-			if( mk_getstate( Lenygaz ) )
+			if( mk_getstate( State->gas ) )
 				setmotor( frekvencia, 1 );
 			else
 				setmotor( frekvencia, 0 );
 			inf.frekvencia = frekvencia;
-			inf.gaz = (char)mk_getstate( Lenygaz );
+			inf.gaz = (char)mk_getstate( State->gas );
 			int wavazonosito;
 			double hangero;
 			int objszam;
@@ -338,28 +331,28 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 		}
 
 		// Toggle:
-		if( !hatranyomva && mk_getstate( Lenyspace ) && !replay )
+		if( !hatranyomva && mk_getstate( State->turn ) && !replay )
 			Hatra = !Hatra;
-		hatranyomva = mk_getstate( Lenyspace );
-		if( !viewnyomva && mk_getstate( Lenyview ) ) {
+		hatranyomva = mk_getstate( State->turn );
+		if( !viewnyomva && mk_getstate( State->minimap ) ) {
 			if( replay )
 				Viewreplay = !Viewreplay;
 			else
 				Viewplay = !Viewplay;
 		}
-		viewnyomva = mk_getstate( Lenyview );
+		viewnyomva = mk_getstate( State->minimap );
 		// Snap nyomas elintezese (ez csak buherkent nincs kikomentezve):
 		if( Snapenabled && !snapnyomva && mk_getstate( Lenysnap ) )
 			Legkozment = 1;
 		snapnyomva = mk_getstate( Lenysnap );
 		// Ido kint legyen vagy ne:
-		if( !timekinyomva && mk_getstate( Lenytimeki ) ) {
+		if( !timekinyomva && mk_getstate( State->timer ) ) {
 			if( replay )
 				Timekireplay = !Timekireplay;
 			else
 				Timekiplay = !Timekiplay;
 		}
-		timekinyomva = mk_getstate( Lenytimeki );
+		timekinyomva = mk_getstate( State->timer );
 		if( !hangnyomva && mk_getstate( Lenyhang ) ) {
 			Kellhang = !Kellhang;
 			Mute = !Mute;

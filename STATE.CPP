@@ -56,6 +56,15 @@ state::state( void ) {
 	res = 1;
 	fakt = 0.60; // 0.68
 	soundvolume = 1.0;
+	gas = SCAN_UP;
+	brake = SCAN_DOWN;
+	brakealias = SCAN_DOWN;
+	leftvolt = SCAN_LEFT;
+	rightvolt = SCAN_RIGHT;
+	alovolt = SCAN_NUMPAD0;
+	turn = SCAN_SPACE;
+	timer = SCAN_T;
+	minimap = SCAN_V;
 	// Itt hagyni kell fopen-t!!!!!!!!!!!!!!!!!!!!:
 	//#ifndef VEGLEGES
 	if( access( Statenev, 0 ) != 0 )
@@ -79,7 +88,16 @@ state::state( void ) {
 	titkosread( &tmp, 2, h );
 	soundvolume = tmp*0.001;
 
-	titkosread( &editfilenev, 20, h );
+	titkosread( &editfilenev, 11, h );
+	titkosread( &gas, 1, h );
+	titkosread( &brake, 1, h );
+	titkosread( &brakealias, 1, h );
+	titkosread( &leftvolt, 1, h );
+	titkosread( &rightvolt, 1, h );
+	titkosread( &alovolt, 1, h );
+	titkosread( &turn, 1, h );
+	titkosread( &timer, 1, h );
+	titkosread( &minimap, 1, h );
 
 	// Magic number:
 	long magicnumber = 0;
@@ -119,7 +137,16 @@ void state::save( void ) {
 	tmp = 1000*soundvolume;
 	titkoswrite( &tmp, 2, h );
 
-	titkoswrite( &editfilenev, 20, h );
+	titkoswrite( &editfilenev, 11, h );
+	titkoswrite( &gas, 1, h );
+	titkoswrite( &brake, 1, h );
+	titkoswrite( &brakealias, 1, h );
+	titkoswrite( &leftvolt, 1, h );
+	titkoswrite( &rightvolt, 1, h );
+	titkoswrite( &alovolt, 1, h );
+	titkoswrite( &turn, 1, h );
+	titkoswrite( &timer, 1, h );
+	titkoswrite( &minimap, 1, h );
 
 	long magicnumber = Magicnumber_state_r;
 	if( Sarvari )

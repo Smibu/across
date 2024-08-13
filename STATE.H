@@ -30,7 +30,16 @@ public:
 	short res;
 	double fakt;
 	double soundvolume;
-	char editfilenev[20];
+	char editfilenev[11];
+	char gas;
+	char brake;
+	char brakealias;
+	char leftvolt;
+	char rightvolt;
+	char alovolt;
+	char turn;
+	char timer;
+	char minimap;
 	char playextfilenev[20];
 	state( void );
 	~state( void );
