@@ -126,6 +126,7 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 		setvolume( State->soundvolume );
 	#endif
 	startmotor();
+	Voltfek = 0;
 	while( 1 ) {
 		// Kiszamolja mennyit kell leptetni:
 		double most = mv_stopperido();

@@ -99,7 +99,7 @@ static void erokszamitasa( kor* pkor, vekt2 i1, vekt2 j1,
 	//surlodasverseny( Ftang, vtang );
 }
 
-static int Voltfek = 0;
+int Voltfek = 0;
 static double Dfek2 = 0, Dfek4 = 0;
 //static double Loket = 6.0;
 static double Loket = 12.0;

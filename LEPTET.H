@@ -1,6 +1,8 @@
 
 class targytomb;
 
+extern int Voltfek;
+
 void resetleptet( void );
 void leptet( double most, double dt, int gaz, int fek,
 					int ugrik1, int ugrik2 );
