@@ -51,7 +51,7 @@ void teljes( void ) {
 }
 
 void kilep( void ) {
-	hiba( "Kiir szoveg!" );
+	mv_exit();
 }
 
 
