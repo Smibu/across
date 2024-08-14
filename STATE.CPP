@@ -56,6 +56,7 @@ state::state( void ) {
 	res = 1;
 	fakt = 0.60; // 0.68
 	soundvolume = 1.0;
+	escalias = SCAN_ESC;
 	gas = SCAN_UP;
 	brake = SCAN_DOWN;
 	brakealias = SCAN_DOWN;
@@ -88,7 +89,8 @@ state::state( void ) {
 	titkosread( &tmp, 2, h );
 	soundvolume = tmp*0.001;
 
-	titkosread( &editfilenev, 11, h );
+	titkosread( &editfilenev, 10, h );
+	titkosread( &escalias, 1, h );
 	titkosread( &gas, 1, h );
 	titkosread( &brake, 1, h );
 	titkosread( &brakealias, 1, h );
@@ -137,7 +139,8 @@ void state::save( void ) {
 	tmp = 1000*soundvolume;
 	titkoswrite( &tmp, 2, h );
 
-	titkoswrite( &editfilenev, 11, h );
+	titkoswrite( &editfilenev, 10, h );
+	titkoswrite( &escalias, 1, h );
 	titkoswrite( &gas, 1, h );
 	titkoswrite( &brake, 1, h );
 	titkoswrite( &brakealias, 1, h );

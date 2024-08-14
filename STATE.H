@@ -30,7 +30,8 @@ public:
 	short res;
 	double fakt;
 	double soundvolume;
-	char editfilenev[11];
+	char editfilenev[10];
+	char escalias;
 	char gas;
 	char brake;
 	char brakealias;

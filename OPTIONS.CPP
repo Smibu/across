@@ -257,6 +257,7 @@ static void setcontrols() {
 		"Turn",
 		"Timer",
 		"Minimap",
+		"ESC alias",
 	};
 	int currkey = 0;
 	while (1) {
@@ -304,9 +305,12 @@ static void setcontrols() {
 		else if (currkey == 8) {
 			State->minimap = c;
 		}
+		else if (currkey == 9) {
+			State->escalias = c;
+		}
 
 		currkey++;
-		if (currkey == 9)
+		if (currkey == 10)
 			return;
 	}
 }

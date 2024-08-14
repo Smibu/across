@@ -361,7 +361,7 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 		hangnyomva = mk_getstate( Lenyhang );
 
 		// Vizsgalat kilepesre:
-		if( mk_getstate( Lenyescape ) ) {
+		if( mk_getstate( Lenyescape ) || mk_getstate( State->escalias ) ) {
 			double eltelido = mv_stopperido();
 			// Motor hangjat kikapcsolja:
 			Mute = 1;
