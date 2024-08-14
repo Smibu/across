@@ -8,7 +8,7 @@ set_property(TARGET across_w PROPERTY CXX_STANDARD 20)
 
 set_property(TARGET across_w PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-file(GLOB SOURCES CONFIGURE_DEPENDS "*.CPP" "F_WIN95/*.CPP" "*.H" "F_WIN95/*.H")
+file(GLOB SOURCES CONFIGURE_DEPENDS "*.CPP" "F_WIN95/*.CPP" "*.H" "F_WIN95/*.H" "*.rc" "*.ico")
 
 string(JOIN "|" EXCLUSIONS
     "D_V\\.CPP"
