@@ -1,6 +1,6 @@
 # Action SuperCross Windows port
 
-This is an incomplete port of Action SuperCross to Windows.
+This is an unofficial port of Action SuperCross to Windows.
 
 ## Known limitations
 
@@ -10,25 +10,45 @@ This is an incomplete port of Action SuperCross to Windows.
 
 ## Changes
 
-* Customizable controls
+* Customizable controls (including alovolt, brake alias and ESC alias)
 * Centered camera by default (disable with `nocenteredcam.inf` file)
 * Option to use lev and rec subdirs, and get unpacked res files from exe dir instead of parent dir (enable with `newdirs.inf`)
 * Death/finish delay removed
 * 1920x1080 resolution support
-* Alovolt
-* Brake alias
 * Item limit in lists increased to 20000 (from 600)
 * Bike size (zoom) min and max bounds extended
 * Included 5 levels from Across 1.1 in internals (after Apple Harvest)
 * Start brake bug fixed
+* Some crashes fixed
 
-## Building
+## Development
 
-Generate Visual Studio project:
+Install CMake. For Visual Studio 2022, generate project files with:
 
 ```
 cmake -G "Visual Studio 17 2022" -A Win32 -B build .
 ```
+
+and open `build/Across.sln`.
+
+## Contributing
+
+The scope of this repo is to provide a Windows port of Action SuperCross along with bug fixes and simple quality-of-life changes.
+So, only issues and PRs from these categories may be accepted:
+
+* non-esoteric bug fix
+* porting some missing feature (editor or sound)
+* simple quality-of-life feature or change
+
+For example, please don't create issues or PRs that are about:
+
+* code style consistency fixes
+* typo fixes
+* translating Hungarian into English
+* adding or adjusting code comments
+* code refactoring
+* deleting commented code or unused files
+* large features (e.g. online play)
 
 ## Other info
 
