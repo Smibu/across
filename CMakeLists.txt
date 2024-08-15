@@ -43,3 +43,5 @@ target_include_directories(across_w PRIVATE
 target_sources(across_w PRIVATE ${SOURCES})
 
 target_link_libraries(across_w winmm ddraw)
+
+set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY VS_STARTUP_PROJECT across_w)
