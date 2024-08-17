@@ -48,7 +48,7 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		wndclass.cbWndExtra		= 0;
 		wndclass.hInstance		= hInstance;
 		wndclass.hIcon				= LoadIcon( hInstance, MAKEINTRESOURCE(1) );
-		wndclass.hCursor			= LoadCursor( NULL, IDC_ARROW );
+		wndclass.hCursor			= NULL;
 		wndclass.hbrBackground	= NULL;
 		wndclass.lpszMenuName	= (LPSTR)NULL;
 		wndclass.lpszClassName	= szAppName;
