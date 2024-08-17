@@ -1,7 +1,7 @@
 #include	"all.h"
 
 static void betuki( int oszlop, char c ) {
-	int x = 50+oszlop*19;
+	int x = 5+oszlop*19;
 	int y = 6*SM + 8;
 	blt8( Korny->picbuffer, Korny->ppic_saveplay, x, y, x, y, x+19, y+30 );
 	if( c == '_' ) {
@@ -32,7 +32,7 @@ static int bevesznevet( char* nev ) {
 		if( ( c >= 'A' && c <= 'Z' ) ||
 			( c >= 'a' && c <= 'z' ) ||
 			( c >= '0' && c <= '9' ) ) {
-			if( i >= 8 )
+			if( i >= 15 )
 				continue;
 			betuki( i, c );
 			nev[i] = c;

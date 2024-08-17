@@ -16,6 +16,7 @@ This is an unofficial port of Action SuperCross to Windows.
 * Death/finish delay removed
 * 1920x1080 resolution support
 * Item limit in lists increased to 20000 (from 600)
+* Replay filename length limit increased to 15 (from 8)
 * Bike size (zoom) min and max bounds extended
 * Included 5 levels from Across 1.1 in internals (after Apple Harvest)
 * Start brake bug fixed
