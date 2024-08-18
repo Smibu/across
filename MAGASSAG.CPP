@@ -244,7 +244,7 @@ vekt2 magassagokeloallitasa( szakaszok* pszakok,
 	}
 
 	const int xmargin = 800;
-	const int ymargin = 600;
+	const int ymargin = 700;
 	vekt2 origo = vekt2( minx-xmargin/Aranyx, miny-ymargin/Aranyy );
 	// Egy kis veletlenites!:
 	origo.x += 0.0000145839857463;
