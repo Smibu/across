@@ -20,6 +20,7 @@ This is an unofficial port of Action SuperCross to Windows.
 * Replay filename length limit increased to 15 (from 8)
 * Bike size (zoom) min and max bounds extended
 * Included 5 levels from Across 1.1 in internals (after Apple Harvest)
+* Escing in internal lev menu goes back to internal list instead of main menu
 * Start brake bug fixed
 * Some crashes fixed
 
