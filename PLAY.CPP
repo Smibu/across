@@ -736,7 +736,7 @@ void play( void ) {
 
 		if( eredmeny > 0 ) {
 			playlevel( eredmeny-1 );
-			return;
+			continue;
 		}
 
 		// External file lejatszast valasztotta, ilyenkor ha visszajon
