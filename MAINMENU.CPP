@@ -128,7 +128,7 @@ static void replay( void ) {
 		val.pabc = Korny->pabc_playmenu;
 		val.escelheto = 1;
 
-		kurrens = val.valassz( Korny->pal_saveplay );
+		kurrens = val.valassz( Korny->pal_saveplay, 0, 1 );
 
 		if( kurrens < 0 ) {
 			Kellobjectrendezni = 1;

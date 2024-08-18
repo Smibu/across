@@ -22,12 +22,14 @@ valaszt::valaszt( void ) {
 
 
 // Visszaadja valasztott szamat, ESC eseten -1-t:
-int valaszt::valassz( ddpal* ppal, int tobbrajz ) {
+int valaszt::valassz( ddpal* ppal, int tobbrajz, int usesearch ) {
 	if( szam < 0 || szam > MAXRUBRIKASZAM )
 		hiba( "valassz-ban szam nem stimmel!" );
 
 	int felso = kur-egykepen/2;
 	int maxfelso = szam-egykepen;
+	int currsearchlen = 0;
+	char currsearch[3] = "";
 	if( felso > maxfelso )
 		felso = maxfelso;
 	if( felso < 0 )
@@ -103,6 +105,35 @@ int valaszt::valassz( ddpal* ppal, int tobbrajz ) {
 				if( kur > felso+egykepen-1 )
 					felso = kur-egykepen+1;
 				kirajz( felso, ppal );
+			}
+		}
+		if ( usesearch ) {
+			if (c != MK_UP && c != MK_DOWN && c != MK_PGDOWN && c != MK_PGUP) {
+				if (currsearchlen >= 2) {
+					currsearchlen = 0;
+					currsearch[1] = 0;
+					currsearch[2] = 0;
+				}
+				currsearch[currsearchlen] = c;
+				currsearchlen++;
+				for (int i = 0; i < szam; i++) {
+					if (strnicmp(Korny->rubrikak[i], currsearch, currsearchlen) == 0) {
+						if (i < felso) {
+							felso = i;
+						}
+						else if (i > felso + egykepen - 1) {
+							felso = i - egykepen + 1;
+						}
+						kur = i;
+						kirajz(felso, ppal);
+						break;
+					}
+				}
+			}
+			else {
+				currsearchlen = 0;
+				currsearch[1] = 0;
+				currsearch[2] = 0;
 			}
 		}
 	}

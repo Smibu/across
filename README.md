@@ -15,6 +15,7 @@ This is an unofficial port of Action SuperCross to Windows.
 * Option to use lev and rec subdirs, and get unpacked res files from exe dir instead of parent dir (enable with `newdirs.inf`)
 * Death/finish delay removed
 * 1920x1080 resolution support
+* Fast search in lists
 * Item limit in lists increased to 20000 (from 600)
 * Replay filename length limit increased to 15 (from 8)
 * Bike size (zoom) min and max bounds extended

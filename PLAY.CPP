@@ -729,7 +729,7 @@ void play( void ) {
 			strcpy( Korny->rubrikak[i+1], tmp );
 		}
 
-		int eredmeny = val.valassz( Korny->pal_playmenu );
+		int eredmeny = val.valassz( Korny->pal_playmenu, 0, 1 );
 
 		if( eredmeny < 0 )
 			return;

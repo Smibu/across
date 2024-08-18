@@ -17,6 +17,6 @@ public:
 	valaszt( void );
 	// Visszaadja valasztott szamat, ESC eseten -1-t:
 	// tobbrajz eseten tobbszor is kirajzolja kezdetben (Win95):
-	int valassz( ddpal* ppal, int tobbrajz = 0 );
+	int valassz( ddpal* ppal, int tobbrajz = 0, int usesearch = 0 );
 };
 

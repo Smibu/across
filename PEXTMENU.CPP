@@ -238,7 +238,7 @@ void playextmenu( void ) {
 
 		blt8( Korny->picbuffer, Korny->ppic_playmenu );
 		Korny->pabc_playmenu->write( Korny->picbuffer, 10, 10, "Select external file!" );
-		int eredmeny = val.valassz( Korny->pal_playmenu );
+		int eredmeny = val.valassz( Korny->pal_playmenu, 0, 1 );
 		if( eredmeny < 0 )
 			return;
 
