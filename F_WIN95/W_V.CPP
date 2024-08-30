@@ -152,6 +152,9 @@ static LRESULT CALLBACK WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 				if (raw.data.keyboard.Message == WM_KEYDOWN || raw.data.keyboard.Message == WM_SYSKEYDOWN)
 				{
 					mk_wmkeydown(raw.data.keyboard.MakeCode);
+					if (raw.data.keyboard.MakeCode == SCAN_ENTER) {
+						mk_wmchar(MK_ENTER);
+					}
 				}
 				else if (raw.data.keyboard.Message == WM_KEYUP || raw.data.keyboard.Message == WM_SYSKEYUP)
 				{
@@ -161,8 +164,15 @@ static LRESULT CALLBACK WndProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPar
 			break;
 		}
 		case WM_CHAR:
-			mk_wmchar( wParam );
+			if (wParam != 10 && wParam != MK_ENTER)
+			{
+				mk_wmchar( wParam );
+			}
 			break;
+		case WM_SYSKEYDOWN:
+		case WM_SYSCHAR:
+			// Disable Windows beep sound and Alt menu
+			return 0;
 
 		default:
 			return DefWindowProc( hWnd, msg, wParam, lParam );

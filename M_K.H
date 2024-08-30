@@ -28,6 +28,7 @@ int mk_getstate( int kod );
 #define MK_STATE_N (78)
 
 #define SCAN_ESC     (1)
+#define SCAN_ENTER  (28)
 #define SCAN_UP     (72)
 #define SCAN_DOWN   (80)
 #define SCAN_LEFT   (75)
