@@ -239,7 +239,7 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 			kiszamolsurlodast( &inf.surlseb, &inf.surlero );
 			//kinyom( inf.surlero*320 );
 			setsurlodas( inf.surlero );
-			double frekvencia = 1.0+fabs(Kor4.omega)*0.025;
+			double frekvencia = 1.0+fabs((Hatra ? Kor2 : Kor4).omega)*0.025;
 			if( mk_getstate( State->gas ) )
 				setmotor( frekvencia, 1 );
 			else
@@ -321,9 +321,9 @@ long lejatszo( palyaleiro* pleiro, st320* pst,
 			else
 				startwave( WAV_SIKER, 0.999 );
 			//hangosdelay( Vegenvaras*1000.0 );
-			while( vanmegwav() )
-				hang();
-			Mute = 1;
+			//while( vanmegwav() )
+			//	hang();
+			//Mute = 1;
 			nullazhangot();
 			if( meghalt )
 				return -1;

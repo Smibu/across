@@ -57,6 +57,9 @@ void mv_main( void ) {
 	checkcenteredcam();
 	checknewdirs();
 
+	starthanghigh();
+	init_sound();
+
 	teljes();
 }
 

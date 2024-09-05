@@ -184,6 +184,7 @@ void mv_exit( void ) {
 	//PostQuitMessage( 0 );
 	//mv_check();
    ddfinish();
+    finish_sound();
 	SendMessage( GhWnd, WM_CLOSE, 0, 0 );
 	exit( 0 );
 }

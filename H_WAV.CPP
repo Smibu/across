@@ -84,7 +84,7 @@ wav::wav( const char* nev, double maxamplitudo, int start, int ucsoutani ) {
 
 	if( bit16 ) {
 		// 16 bites uncompressed:
-		if( size%2 )
+		if( hossz%2 )
 			hiba( "16 bites wav-nal nem paros byteszam!" );
 		size = reszhossz;
 		if( start+reszhossz > hossz/2 )
@@ -170,7 +170,7 @@ void wav::vegereilleszt( wav* pwav, int n ) {
 wav2::wav2( wav* pwav ) {
 	mtomb = NULL;
 	tomb = pwav->tomb;
-	#ifndef WATCOM
+	#if 0
 		hiba( "wav2 csak Watcom alatt mukodik!" );
 	#endif
 	if( pwav->size > 64000 )

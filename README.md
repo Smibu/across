@@ -5,7 +5,6 @@ This is an unofficial port of Action SuperCross to Windows.
 ## Known limitations
 
 * Editor does not work
-* Sound does not work
 * Requires a DirectDraw wrapper library (e.g. DXGL)
 
 ## Changes
@@ -26,7 +25,7 @@ This is an unofficial port of Action SuperCross to Windows.
 
 ## Development
 
-Install CMake. For Visual Studio 2022, generate project files with:
+Install CMake and download SDL2 sources to `<repo>/sdl2` directory. For Visual Studio 2022, generate project files with:
 
 ```
 cmake -G "Visual Studio 17 2022" -A Win32 -B build .
@@ -40,7 +39,7 @@ The scope of this repo is to provide a Windows port of Action SuperCross along w
 So, only issues and PRs from these categories may be accepted:
 
 * non-esoteric bug fix
-* porting some missing feature (editor or sound)
+* porting editor
 * simple quality-of-life feature or change
 
 For example, please don't create issues or PRs that are about:

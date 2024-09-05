@@ -21,7 +21,7 @@ static int Mix = 100, I1 = 7526,
 
 static double Egypermix = 1.0/Mix;
 
-static int Buffsize = 500;
+static int Buffsize = AUDIO_SAMPLES;
 static int Atmenet = 499;
 
 static int Hanghighbevoltkapcsolva = 0;
@@ -84,7 +84,6 @@ void starthanghigh( void ) {
 		Hangerok[i] = 0;
 		Pwavok[i] = NULL;
 	}
-	Mute = 0;
 }
 
 void stophanghigh( void ) {
@@ -142,7 +141,7 @@ void startwave( int wavazonosito, double hangero ) {
 	if( Wavszam >= MAXWAV )
 		return;
 
-	_disable();
+	//_disable();
 	for( int i = 0; i < MAXWAV; i++ ) {
 		if( !Ezmegy[i] ) {
 			// i. csatorna szabad!
@@ -151,11 +150,11 @@ void startwave( int wavazonosito, double hangero ) {
 			Kovhang[i] = 0;
 			Pwavok[i] = pwav;
 			Hangerok[i] = hangero*65536.0;
-			_enable();
+			//_enable();
 			return;
 		}
 	}
-	_enable();
+	//_enable();
 	hiba( "Wavszam szerint meg van csat, de nincs!" );
 }
 
@@ -390,6 +389,14 @@ void callbackhang( short* sbuff, unsigned char* cbuff ) {
 		}
 	}
 
+	double vol = State->soundvolume;
+	if (vol >= 0 && vol < 1)
+	{
+		for (int i = 0; i < Buffsize; i++) {
+			sbuff[i] = sbuff[i] * vol;
+		}
+	}
+
 	if( cbuff ) {
 		for( int i = 0; i < Buffsize; i++ ) {
 			cbuff[i] = (unsigned char)((sbuff[i]>>8)+128);
@@ -400,12 +407,27 @@ void callbackhang( short* sbuff, unsigned char* cbuff ) {
 
 void hangosdelay( long t ) {
 	if( !Hangenabled ) {
-		delay( t );
+		//delay( t );
 		return;
 	}
 	for( int i = 0; i < t/20; i++ ) {
-		delay( 20 );
+		//delay( 20 );
 		hang();
 	}
 }
 
+void hang(void) {
+}
+
+void nullazhangot(void) {
+}
+
+void setvolume(double volume) {
+}
+
+int starthang(unsigned bufsize) {
+	return 1;
+}
+
+void stophang() {
+}

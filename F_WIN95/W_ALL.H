@@ -22,3 +22,5 @@
 #include	"config.h"
 #include	"vekt2.h"
 #include	"adatok.h"
+#include    "sound.h"
+#include    "hanghigh.h"

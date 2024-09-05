@@ -106,3 +106,4 @@
 
 #include	"misc.h"
 #include	"skip.h"
+#include    "sound.h"

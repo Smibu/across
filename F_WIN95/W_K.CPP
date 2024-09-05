@@ -25,6 +25,9 @@ void mk_init( void ) {
 
 int mk_getextchar( void ) {
 	while( 1 ) {
+		if (!vanmegwav()) {
+			Mute = 1;
+		}
 		mv_check();
 		if( Charszam > 0 ) {
 			int c = Buffer[0];

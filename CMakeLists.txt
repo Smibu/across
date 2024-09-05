@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.20)
 
 project(Across LANGUAGES CXX)
 
+set(SDL_FORCE_STATIC_VCRT ON CACHE BOOL "Force static VC runtime for SDL")
+
+add_subdirectory(sdl2 EXCLUDE_FROM_ALL)
+
 add_executable(across_w WIN32)
 
 set_property(TARGET across_w PROPERTY CXX_STANDARD 20)
@@ -26,7 +30,7 @@ string(JOIN "|" EXCLUSIONS
     "H_TULMIN\\.CPP"
     "D_STOPER\\.CPP"
     "D_DD\\.CPP"
-    "H_HIGH\\.CPP"
+    "H_DUMMY\\.CPP"
     "CRCCHECK\\.CPP"
     "BGI\\.CPP"
     "MAIN\\.CPP"
@@ -42,6 +46,6 @@ target_include_directories(across_w PRIVATE
 
 target_sources(across_w PRIVATE ${SOURCES})
 
-target_link_libraries(across_w winmm ddraw)
+target_link_libraries(across_w winmm ddraw SDL2::SDL2-static)
 
 set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY VS_STARTUP_PROJECT across_w)
