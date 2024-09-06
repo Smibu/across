@@ -8,7 +8,7 @@ static HINSTANCE ghInstance = 0;
 HWND GhWnd = 0;
 
 static char szAppName[] = "Action SuperCross 1.2";
-static char szCaption[] = "Across 1.2 Win port [30.08.24]";
+static char szCaption[] = "Across 1.2 Win port [06.09.24]";
 
 static int GameLoop = 0;
 
